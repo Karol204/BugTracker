@@ -1,15 +1,52 @@
-{% extends '_base.html' %}
 {% load static %}
-
-
-{% block title %}<title>Log in</title>{% endblock title %}
-
-{% block content %}
-<h2>Log in</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>Log in</title>
+  </head>
+  <body class="loginPage">
+    <div class="container">
+      <h1>Please Login</h1>
     <form method="post" class="loginForm">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
+        {% csrf_token %}
+
+            <div class="form-control">
+                {{ form.username }}
+                <label>Username</label>
+            </div>
+
+            <div class="form-control">
+                {{ form.password }}
+                <label>Password</label>
+            </div>
+
+
+            <button type="submit" class="btn">Log In</button>
+            <p class="registerLink">Don't have account?<a href="{% url 'signup' %}"> Sign up!</a></p>
+            </div>
     </form>
 
-{% endblock %}
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+{#{% extends '_base.html' %}#}
+{#{% load static %}#}
+{##}
+{##}
+{#{% block title %}<title>Log in</title>{% endblock title %}#}
+{##}
+{#{% block content %}#}
+{#<h2>Log in</h2>#}
+
+{##}
+{#{% endblock %}#}

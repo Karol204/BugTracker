@@ -1,15 +1,40 @@
-{% extends '_base.html' %}
+
+
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>Sign up</title>
+  </head>
+  <body class="loginPage">
+    <div class="container">
+      <h1>Please Login</h1>
+    <form method="post" class="loginForm">
+        {% csrf_token %}
 
+            <div class="form-control">
+                {{ form.username }}
+                <label>Username</label>
+            </div>
 
-{% block title %}<title>Sign up</title>{% endblock title %}
+            <div class="form-control">
+                {{ form.password1 }}
+                <label>Password</label>
+            </div>
 
-{% block content %}
-<h2>Log in</h2>
-    <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+            <div class="form-control">
+                {{ form.password2 }}
+                <label>Confirm password</label>
+            </div>
+
+            <button type="submit" class="btn">Sign in</button>
+            <p class="registerLink">If you have an account<a href="{% url 'login' %}"> Log in!</a></p>
+            </div>
     </form>
 
-{% endblock %}
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>
