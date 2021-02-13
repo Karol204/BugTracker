@@ -30,7 +30,10 @@ class Project(models.Model):
     project_name = models.CharField(max_length=250)
     description = models.CharField(max_length=650)
     deadline = models.DateField()
-    devs = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    issues = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    devs = models.ManyToManyField(Employee)
+    issues = models.ForeignKey(Issue, on_delete=models.CASCADE, null=True, blank=True)
     priority = models.CharField(choices=Priority, max_length=6)
     added_date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.project_name}'

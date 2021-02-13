@@ -13,7 +13,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('project_name', 'description', 'deadline', 'devs')
+    list_display = ('project_name', 'description', 'deadline')
 
 
 

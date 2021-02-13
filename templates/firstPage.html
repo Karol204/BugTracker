@@ -9,7 +9,17 @@
 
 </head>
 <body>
-    <p>Witaj</p>
-<button><a href="{% url 'logout' %}">Log out</a></button>
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Raport a bug</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="{% url 'logout' %}">Log out</a></li>
+    </ul>
+</nav>
+     {% for project in projects %}
+        {{ project }}
+    {% endfor %}
+</body>
 </body>
 </html>
