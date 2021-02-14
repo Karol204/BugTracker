@@ -1,11 +1,25 @@
-{% block title %}
-<title>Landing Page</title>
-{% endblock title %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>Landing Page</title>
+</head>
+<body class="loginPage">
 
-{% block content %}
-    <h1>Cos</h1>
-
+<div class="firstContainer">
+    <h1>Welcome in Wtorek.com</h1>
+    <h2>Log in or create an account</h2>
+    <div>
     <button><a href="{% url 'login' %}">Log in</a> </button>
     <button><a href="{% url 'signup' %}">Sign Up</a> </button>
+    </div>
+</div>
 
-{% endblock content %}
+
+</body>
+</html>

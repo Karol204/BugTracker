@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,15 +9,18 @@
 <body>
 <nav>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Raport a bug</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'reportNewBug' %}">Raport a bug</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li>
     </ul>
 </nav>
-     {% for project in projects %}
-        {{ project }}
+{{ project.name }}
+Devs:
+<ul>
+    {% for dev in project.devs.all %}
+    <li>{{ dev }} {{ dev.position }}</li>
     {% endfor %}
-</body>
+</ul>
 </body>
 </html>

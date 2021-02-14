@@ -8,12 +8,7 @@ Positions = (('fron', 'Front-end developer'), ('back', 'Back-end developer'), ('
 
 Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
 
-class Issue(models.Model):
-    issue_name = models.CharField(max_length=250)
-    issue_type = models.CharField(choices=Types, max_length=5)
 
-    def __str__(self):
-        return f'{self.issue_name}'
 
 
 class Employee(models.Model):
@@ -31,9 +26,18 @@ class Project(models.Model):
     description = models.CharField(max_length=650)
     deadline = models.DateField()
     devs = models.ManyToManyField(Employee)
-    issues = models.ForeignKey(Issue, on_delete=models.CASCADE, null=True, blank=True)
     priority = models.CharField(choices=Priority, max_length=6)
     added_date = models.DateField(auto_now=True)
 
     def __str__(self):
         return f'{self.project_name}'
+
+
+class Issue(models.Model):
+    issue_name = models.CharField(max_length=250)
+    issue_type = models.CharField(choices=Types, max_length=5)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    reported = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.issue_name}'

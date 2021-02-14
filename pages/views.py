@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Project, Employee, Issue
+from .forms import BugReportForm
 
 # Create your views here.
 
@@ -16,7 +17,44 @@ class HomePage(View):
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id).id
         projects = Project.objects.filter(devs__id=employee_id)
+        print(projects)
         ctx = {
             'projects': projects
         }
-        return render(request, 'firstPage.html', ctx)
+        return render(request, 'HomePage.html', ctx)
+
+
+class ProjectDetalisView(View):
+
+    def get(self, requet, id):
+        project = Project.objects.get(pk=id)
+        ctx = {
+            'project': project
+        }
+        return render(requet, 'projectDetalisPage.html', ctx)
+
+
+class NewBugView(View):
+
+    def get(self, request):
+        form = BugReportForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'bugReportFormPage.html', ctx)
+
+    def post(self, request):
+        form = BugReportForm(request.POST)
+        if form.is_valid():
+            issue_name = form.cleaned_data['issue_name']
+            issue_type = form.cleaned_data['issue_type']
+            project = form.cleaned_data['project']
+            user_id = request.user.id
+            employee_id = Employee.objects.get(account_id=user_id)
+            new_bug = Issue()
+            new_bug.issue_name = issue_name
+            new_bug.issue_type = issue_type
+            new_bug.project = project
+            new_bug.reported = employee_id
+            new_bug.save()
+        return redirect('home')
