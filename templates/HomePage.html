@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,14 +6,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <title>Document</title>
 
 </head>
 <body>
-<nav>
+<nav class="nav-container">
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Raport a bug</a></li>
+        <li><a href="#" style="color: #dd3233; font-weight: bold">Home</a></li>
+        <li><a href="{% url 'reportNewBug' %}">Raport a bug</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li>
     </ul>

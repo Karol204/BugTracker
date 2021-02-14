@@ -5,21 +5,23 @@
 
 
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Muli', 'sans-serif';
 }
 
 .loginPage {
-  background-color: steelblue;
-  color: #fff;
-  font-family: 'Muli', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0;
+    background-color: steelblue;
+    color: #fff;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
 }
 
 /* Style dotyczace strony logowania */
@@ -173,4 +175,36 @@
 
 .firstContainer div button:focus {
     outline: 0;
+}
+/* Navigation */
+
+.nav-container{
+    background-color: #444444;
+    position: fixed;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-container ul {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+}
+
+.nav-container ul li {
+    list-style: none;
+    margin: 20px 15px;
+    transform: translateY(-50%);
+}
+
+.nav-container ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+.test {
+    height: 200vh;
 }
