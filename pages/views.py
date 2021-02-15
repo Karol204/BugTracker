@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Project, Employee, Issue
-from .forms import BugReportForm
+from .forms import BugReportForm, ProfilForm
 
 # Create your views here.
 
@@ -15,13 +15,18 @@ class HomePage(View):
 
     def get(self, request):
         user_id = request.user.id
-        employee_id = Employee.objects.get(account_id=user_id).id
-        projects = Project.objects.filter(devs__id=employee_id)
-        print(projects)
-        ctx = {
-            'projects': projects
-        }
-        return render(request, 'HomePage.html', ctx)
+        employee = Employee.objects.filter(account_id=user_id)
+        print(employee)
+        if len(employee) == 1:
+            employee_id = Employee.objects.get(account_id=user_id).id
+            projects = Project.objects.filter(devs__id=employee_id)
+            print(projects)
+            ctx = {
+                'projects': projects
+            }
+            return render(request, 'HomePage.html', ctx)
+        else:
+            return redirect('/profil')
 
 
 class ProjectDetalisView(View):
@@ -62,16 +67,32 @@ class NewBugView(View):
 
 class ProfileView(View):
 
-    def get(self, request):
+    def get(self, request, id):
         user_id = request.user.id
-        employee = get_object_or_404(Employee, account_id=user_id)
-        print(employee)
+        employee = Employee.objects.filter(account_id=user_id)
         if employee:
-            profile = True
+            return render(request, 'profilPage.html')
         else:
-            profile = False
-        print(profile)
+            return redirect('/profil')
+
+
+class ProfilFormView(View):
+
+    def get(self, request):
+        form = ProfilForm()
         ctx = {
-            'profile': profile
+            'form': form,
         }
-        return render(request, 'profilPage.html', ctx)
+        return render(request, 'profilFormPage.html', ctx)
+
+    def post(self, request):
+        form = ProfilForm(request.POST)
+        if form.is_valid():
+            new_employee = Employee()
+            new_employee.account = request.user
+            new_employee.first_name = form.cleaned_data['first_name']
+            new_employee.last_name = form.cleaned_data['last_name']
+            new_employee.position = form.cleaned_data['position']
+            new_employee.email = form.cleaned_data['email']
+            new_employee.save()
+        return redirect('/homePage')
