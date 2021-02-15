@@ -10,16 +10,26 @@
     <title>Landing Page</title>
 </head>
 <body class="loginPage">
-
-<div class="firstContainer">
-    <h1>Welcome in Wtorek.com</h1>
-    <h2>Log in or create an account</h2>
-    <div>
-    <button><a href="{% url 'login' %}">Log in</a> </button>
-    <button><a href="{% url 'signup' %}">Sign Up</a> </button>
+{% if user.is_authenticated %}
+    <div class="firstContainer">
+        <h1>Welcome</h1>
+        <h2>You are logged as {{ user.username }}</h2>
+        <div>
+            <button style="margin: 0 20px"><a href="{% url 'home' %}">Enter</a> </button>
+            <button style="margin: 0 20px"><a href="{% url 'logout' %}">Log out</a> </button>
+        </div>
     </div>
-</div>
+{% else %}
 
+    <div class="firstContainer">
+        <h1>Welcome in Wtorek.com</h1>
+        <h2>Log in or create an account</h2>
+        <div>
+        <button><a href="{% url 'login' %}">Log in</a> </button>
+        <button><a href="{% url 'signup' %}">Sign Up</a> </button>
+        </div>
+    </div>
 
+{% endif %}
 </body>
 </html>

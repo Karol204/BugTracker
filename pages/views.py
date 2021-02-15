@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Project, Employee, Issue
 from .forms import BugReportForm
@@ -58,3 +58,20 @@ class NewBugView(View):
             new_bug.reported = employee_id
             new_bug.save()
         return redirect('home')
+
+
+class ProfileView(View):
+
+    def get(self, request):
+        user_id = request.user.id
+        employee = get_object_or_404(Employee, account_id=user_id)
+        print(employee)
+        if employee:
+            profile = True
+        else:
+            profile = False
+        print(profile)
+        ctx = {
+            'profile': profile
+        }
+        return render(request, 'profilPage.html', ctx)

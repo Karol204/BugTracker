@@ -13,14 +13,20 @@
 <body>
 <nav class="nav-container">
     <ul>
-        <li><a href="#" style="color: #dd3233; font-weight: bold">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="{% url 'reportNewBug' %}">Raport a bug</a></li>
-        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'profile' %}" style="color: #dd3233; font-weight: bold">Profile</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li>
     </ul>
 </nav>
-     {% for project in projects %}
-         <a href="/projectDetails/{{ project.id }}">{{ project }}</a> <br>
-    {% endfor %}
+<div style="margin-top: 60px">
+
+    {% if profile == True%}
+         <p>profil jest</p>
+     {% else %}
+         <p>profilu nie ma</p>
+    {% endif %}
+
+</div>
 </body>
 </html>
