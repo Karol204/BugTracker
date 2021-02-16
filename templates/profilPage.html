@@ -16,7 +16,7 @@
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'reportNewBug' %}">Raport a bug</a></li>
         <li><a href="/profileView/{{ user.id }}" style="color: #dd3233; font-weight: bold">Profile</a></li>
-        <li><a href="{% url 'logout' %}">Log out</a></li>
+        <li><a href="{% url 'account_logout' %}">Log out</a></li>
     </ul>
 </nav>
 <div style="margin-top: 60px">
@@ -28,8 +28,7 @@
             <li><h3>Email:</h3> {{ employee.email }}</li>
         </ul>
     <div>
-        <a href="{% url 'password_change' %}">Change password</a>
-        <a href="{% url 'password_reset' %}"></a>
+        <a href="/accounts/password/change">Change password</a>
     </div>
 
 </div>

@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -57,6 +54,8 @@
 }
 
 .registerLink a {
+    display: inline-block;
+    margin-top: 10px;
     text-decoration: none;
     color: lightblue;
 }
@@ -67,12 +66,13 @@
     width: 300px;
 }
 
-#id_username,
+
 #id_password,
 #id_password1,
 #id_password2,
-.form-control #id_login,
-.form-control #id_email{
+#id_login,
+#id_email,
+#id_oldpassword{
     background-color: transparent;
     border: 0;
     border-bottom: 3px solid #fff;
@@ -84,18 +84,18 @@
 }
 
 
-#id_username:focus,
 #id_password:focus,
-#id_username:valid,
 #id_password:valid,
 #id_password1:focus,
 #id_password1:valid,
 #id_password2:focus,
 #id_password2:valid,
-.form-control #id_login:focus,
-.form-control #id_login:valid,
-.form-control #id_email:focus,
-.form-control #id_email:valid {
+#id_login:focus,
+#id_login:valid,
+#id_email:focus,
+#id_email:valid,
+#id_oldpassword:focus,
+#id_oldpassword:valid {
     outline: 0;
     border-bottom: 2px solid lightblue;
 }
