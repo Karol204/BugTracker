@@ -70,8 +70,14 @@ class ProfileView(View):
     def get(self, request, id):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
+        print(employee)
+
         if employee:
-            return render(request, 'profilPage.html')
+            person = Employee.objects.get(account_id=user_id)
+            ctx = {
+                'employee': person,
+            }
+            return render(request, 'profilPage.html', ctx)
         else:
             return redirect('/profil')
 

@@ -21,8 +21,16 @@
 </nav>
 <div style="margin-top: 60px">
 
-
-
+        <ul>
+            <li><h3>First name:</h3> {{ employee.first_name }}</li>
+            <li><h3>Last name:</h3> {{ employee.last_name }}</li>
+            <li><h3>Position:</h3> {{ employee.position }}</li>
+            <li><h3>Email:</h3> {{ employee.email }}</li>
+        </ul>
+    <div>
+        <a href="{% url 'password_change' %}">Change password</a>
+        <a href="{% url 'password_reset' %}"></a>
+    </div>
 
 </div>
 </body>

@@ -67,7 +67,12 @@
     width: 300px;
 }
 
-#id_username, #id_password {
+#id_username,
+#id_password,
+#id_password1,
+#id_password2,
+.form-control #id_login,
+.form-control #id_email{
     background-color: transparent;
     border: 0;
     border-bottom: 3px solid #fff;
@@ -78,10 +83,19 @@
     color: #fff;
 }
 
+
 #id_username:focus,
 #id_password:focus,
 #id_username:valid,
-#id_password:valid {
+#id_password:valid,
+#id_password1:focus,
+#id_password1:valid,
+#id_password2:focus,
+#id_password2:valid,
+.form-control #id_login:focus,
+.form-control #id_login:valid,
+.form-control #id_email:focus,
+.form-control #id_email:valid {
     outline: 0;
     border-bottom: 2px solid lightblue;
 }
@@ -106,27 +120,6 @@
     transform: translateY(-30px);
 }
 
-/* Style dla strony rejestracji */
-
-#id_password1,
-#id_password2 {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 3px solid #fff;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
-    font-size: 18px;
-    color: #fff;
-}
-
-#id_password1:focus,
-#id_password1:valid,
-#id_password2:focus,
-#id_password2:valid{
-    outline: 0;
-    border-bottom: 2px solid lightblue;
-}
 
 /* Style landingPage */
 

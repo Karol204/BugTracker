@@ -1,13 +1,12 @@
-
-
 {% load static %}
+{% load field_attrs %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <title>Sign up</title>
+    <title>Log in</title>
   </head>
   <body class="loginPage">
     <div class="container">
@@ -16,25 +15,39 @@
         {% csrf_token %}
 
             <div class="form-control">
-                {{ form.username }}
-                <label>Username</label>
+                {{ form.login|attr:"placeholder:" }}
+                <label>E-mail address</label>
             </div>
 
             <div class="form-control">
-                {{ form.password1 }}
+                {{ form.password|attr:"placeholder:" }}
                 <label>Password</label>
             </div>
 
-            <div class="form-control">
-                {{ form.password2 }}
-                <label>Confirm password</label>
-            </div>
 
-            <button type="submit" class="btn">Sign in</button>
-            <p class="registerLink">If you have an account<a href="{% url 'login' %}"> Log in!</a></p>
+            <button type="submit" class="btn">Log In</button>
+            <p class="registerLink">Don't have account?<a href="{% url 'account_signup' %}"> Sign up!</a></p>
             </div>
     </form>
 
     <script src="{% static 'js/app.js' %}"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+{#{% extends '_base.html' %}#}
+{#{% load static %}#}
+{##}
+{##}
+{#{% block title %}<title>Log in</title>{% endblock title %}#}
+{##}
+{#{% block content %}#}
+{#<h2>Log in</h2>#}
+
+{##}
+{#{% endblock %}#}
