@@ -16,13 +16,14 @@ class HomePage(View):
     def get(self, request):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
-        print(employee)
         if len(employee) == 1:
             employee_id = Employee.objects.get(account_id=user_id).id
             projects = Project.objects.filter(devs__id=employee_id)
-            print(projects)
+            issues = Issue.objects.all()
+            print(issues)
             ctx = {
-                'projects': projects
+                'projects': projects,
+                'issues': issues
             }
             return render(request, 'HomePage.html', ctx)
         else:

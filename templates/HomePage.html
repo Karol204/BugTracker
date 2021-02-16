@@ -23,9 +23,42 @@
 
     </ul>
 </nav>
-<div style="margin-top: 60px">
+<div class="projectsContainer">
      {% for project in projects %}
-         <a href="/projectDetails/{{ project.id }}">{{ project }}</a> <br>
+         <div class="projectDetailsBox">
+         <div class="projectTitle">
+             <p><a href="/projectDetails/{{ project.id }}">{{ project }}</a></p>
+             <p>{{ project.description }}</p>
+         </div>
+        <div class="projectIssues">
+        <h3>Reported bugs:</h3>
+
+{% for issue in issues %}
+    <div style="background-color: rgba(95,150, 90, 0.7); margin: 20px 0;">
+        {% if project.id == issue.project.id %}
+
+            <h3 style="text-transform: uppercase">{{ issue.issue_name }}</h3>
+                <h4>{{ issue.issue_type }}</h4>
+
+                    {% if issue.priority == 'Urgent' %}
+                        <div style="background-color: red">{{ issue.priority }}</div>
+                    {% elif issue.priority == 'ASAP' %}
+                        <div style="background-color: purple">{{ issue.priority }}</div>
+                    {% else %}
+                        <div>{{ issue.priority }}</div>
+                    {% endif %}
+
+                <p>{{ issue.reported.first_name }} {{ issue.reported.last_name }}</p>
+
+                {{ issue.description }}
+
+        {% endif %}
+    </div>
+
+{% endfor %}
+
+         </div>
+         </div>
     {% endfor %}
     </div>
 </body>

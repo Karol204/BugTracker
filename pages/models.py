@@ -39,5 +39,8 @@ class Issue(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     reported = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
+    priority = models.CharField(choices=Priority, max_length=6)
+    description = models.CharField(max_length=250)
+
     def __str__(self):
         return f'{self.issue_name}'
