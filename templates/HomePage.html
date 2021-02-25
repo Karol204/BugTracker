@@ -21,8 +21,9 @@
                 {% for issue in issues %}
 
                     <tr class="inside-content">
+                        <td class="title inactive">{{ issue.issue_name }}
 
-                        <td class="title" data-id="{{ issue.id }}">{{ issue.issue_name }}</td>
+                        </td>
                         <td>{{ issue.reported }}</td>
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
@@ -53,9 +54,6 @@
                     <tr class="inside-content">
                         <td class="title inactive" data-id="{{ yourIssue.id }}">
                             {{ yourIssue.issue_name }}
-                        <div class="desc">
-                            {{ yourIssue.description }}
-                        </div>
                         </td>
                         <td>{{ yourIssue.reported }}</td>
                         <td class="priorityType">{{ yourIssue.priority }}</td>
@@ -68,6 +66,18 @@
 
 
         </div>
+
+    </div>
+
+    <div class="form " id="hidden-form">
+        <form method="post" class="bug-form">
+        {% csrf_token %}
+            <div class="bug-report-form">
+                {{ form.as_p }}
+                <button type="submit" onclick="AjaxFormSubmit()">Report</button>
+            </div>
+
+    </form>
 
     </div>
 

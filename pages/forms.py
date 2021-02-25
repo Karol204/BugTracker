@@ -1,8 +1,11 @@
 from django import forms
 from .models import Project, Employee
 
+
 Types = (('Bug', 'Bug'), ('Data', 'Database'), ('Front', 'Front-end'))
+
 Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
+
 class BugReportForm(forms.Form):
 
     issue_name = forms.CharField(max_length=250)

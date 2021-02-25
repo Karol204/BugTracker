@@ -4,8 +4,8 @@ const loginLabels = document.querySelectorAll('.form-control label')
 const priorityTypes = document.querySelectorAll('.priorityType')
 
 const IssueDetailBtn = document.querySelectorAll('.title')
+const formBtn = document.getElementById('hidden-form')
 
-console.log(IssueDetailBtn)
 loginLabels.forEach(label => {
     label.innerHTML = label.innerText
         .split('')
@@ -13,21 +13,33 @@ loginLabels.forEach(label => {
         .join('')
 })
 
-// Issue description
+// Report bug on popup
 
-IssueDetailBtn.forEach((e) => {
-    e.addEventListener('click', showIssueDetail)
+function AjaxFormSubmit() {
+
+    let issue_name = document.getElementById('id_issue_name')
+    let issue_type = document.getElementById('id_issue_type')
+    let project = document.getElementById('id_project')
+    let priority = document.getElementById('id_priority')
+    let due_date = document.getElementById('id_due_date')
+    let description = document.getElementById('id_description')
+
+    let page = "/ajax"
+    let data = {'issue_name' : issue_name, 'issue_type' : issue_type, 'project' : project, 'priority' : priority,
+    'due_date' : due_date, 'description' : description, csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    $.post(page, data, function () {
+    formBtn.innerHTML = '<h1 class="confirmation">Done</h1>'
+    setTimeout(hideForm, 2000)
 })
 
-function showIssueDetail() {
-    this.classList.toggle('inactive')
+function hideForm() {
+    formBtn.classList.add('inactive')
+}}
 
-}
 
 // Priority box color
 
 priorityTypes.forEach((e) => {
-    console.log(e.innerHTML)
     if(e.innerHTML === 'Urgent') {
         e.classList.add('urgent')
     } else if(e.innerHTML === 'ASAP'){

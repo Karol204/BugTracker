@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import LandingPage, HomePage, ProjectDetalisView,NewBugView, ProfileView, ProfilFormView
+from .views import LandingPage, HomePage, ProjectDetalisView, NewBugView, ProfileView, ProfilFormView, post_bug_form
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('projectDetails/<int:id>', ProjectDetalisView.as_view(), name='projectDetails'),
     path('reportNewBug', NewBugView.as_view(), name='reportNewBug'),
     path('profileView/<int:id>', ProfileView.as_view(), name='profile'),
-    path('profil', ProfilFormView.as_view(), name='profileForm')
+    path('profil', ProfilFormView.as_view(), name='profileForm'),
+    path('ajax', post_bug_form)
 ]
