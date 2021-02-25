@@ -22,7 +22,7 @@
 
                     <tr class="inside-content">
 
-                        <td>{{ issue.issue_name }}</td>
+                        <td class="title" data-id="{{ issue.id }}">{{ issue.issue_name }}</td>
                         <td>{{ issue.reported }}</td>
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
@@ -51,7 +51,12 @@
                 {% for yourIssue in reported_by_you %}
 
                     <tr class="inside-content">
-                        <td>{{ yourIssue.issue_name }}</td>
+                        <td class="title inactive" data-id="{{ yourIssue.id }}">
+                            {{ yourIssue.issue_name }}
+                        <div class="desc">
+                            {{ yourIssue.description }}
+                        </div>
+                        </td>
                         <td>{{ yourIssue.reported }}</td>
                         <td class="priorityType">{{ yourIssue.priority }}</td>
                         <td>{{ yourIssue.project }}</td>

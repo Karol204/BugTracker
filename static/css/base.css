@@ -226,6 +226,10 @@
     border-radius: 5px;
 }
 
+.title {
+    cursor: pointer;
+}
+
 /* Bug report form */
 
 .bug-report-form {
@@ -287,16 +291,24 @@
     transform: scale(0.98);
 }
 
-
-
-
-
-
-
 .urgent {
     background-color:  rgba(200, 32, 33, 0.8);
 }
 
 .asap {
     background-color: rgba(140, 32, 203, 0.8);
+}
+
+.title div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 400px;
+    background-color: antiquewhite;
+}
+
+.inactive div {
+    display: none;
 }

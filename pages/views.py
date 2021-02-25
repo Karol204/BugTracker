@@ -45,6 +45,7 @@ class ProjectDetalisView(LoginRequiredMixin, View):
 class NewBugView(LoginRequiredMixin, View):
 
     login_url = '/accounts/login'
+
     def get(self, request):
         form = BugReportForm()
         ctx = {
