@@ -13,7 +13,6 @@
             <table class="table">
                   <tr class="inside-content">
                     <th>Title</th>
-                    <th>Status</th>
                     <th>Action</th>
                     <th>Priority</th>
                     <th>Project</th>
@@ -22,12 +21,41 @@
                 {% for issue in issues %}
 
                     <tr class="inside-content">
+
                         <td>{{ issue.issue_name }}</td>
-                        <td>Status</td>
                         <td>{{ issue.reported }}</td>
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
                         <td>{{ issue.due_date }}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+
+
+        </div>
+
+    </div>
+
+    <h2>Reported by you</h2>
+    <div class="table-container">
+        <div >
+            <table class="table">
+                  <tr class="inside-content">
+                    <th>Title</th>
+                    <th>Action</th>
+                    <th>Priority</th>
+                    <th>Project</th>
+                    <th>Deadline</th>
+                  </tr>
+                {% for yourIssue in reported_by_you %}
+
+                    <tr class="inside-content">
+                        <td>{{ yourIssue.issue_name }}</td>
+                        <td>{{ yourIssue.reported }}</td>
+                        <td class="priorityType">{{ yourIssue.priority }}</td>
+                        <td>{{ yourIssue.project }}</td>
+                        <td>{{ yourIssue.due_date }}</td>
                     </tr>
 
                 {% endfor %}

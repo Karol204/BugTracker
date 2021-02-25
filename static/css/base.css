@@ -220,7 +220,7 @@
 }
 
 .inside-content td {
-    padding: 15px 15px;
+    padding: 10px 15px;
     text-align: center;
     vertical-align: middle;
     border-radius: 5px;
@@ -232,7 +232,7 @@
     display: flex;
     margin-top: 100px;
     width: 350px;
-    height: 400px;
+    height: 500px;
     background-color: lightblue;
     flex-direction: column;
     align-items: center;
@@ -255,9 +255,6 @@
     font-size: 18px;
 }
 
-
-
-
 .bug-report-form p input,
 .bug-report-form p select {
     background-color: transparent;
@@ -276,7 +273,6 @@
     font-size: 1.2rem;
 
 }
-
 
 .bug-report-form button:hover {
     background-color: #fff;

@@ -135,7 +135,8 @@ STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-
+LOGIN_URL = '/accounts/login'
+LOGIN_URL_REDIRECT = '/accounts/login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'landingPage'
 

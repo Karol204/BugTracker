@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Project, Employee, Issue
 from .forms import BugReportForm, ProfilForm
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 class LandingPage(View):
@@ -11,17 +12,18 @@ class LandingPage(View):
         return render(request, 'home.html')
 
 
-class HomePage(View):
+class HomePage(LoginRequiredMixin, View):
 
+    login_url = '/accounts/login'
     def get(self, request):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
         if len(employee) == 1:
             employee_id = Employee.objects.get(account_id=user_id).id
-            projects = Project.objects.filter(devs__id=employee_id)
+            reported_by_you = Issue.objects.filter(reported_id=employee_id)
             issues = Issue.objects.all()
             ctx = {
-                'projects': projects,
+                'reported_by_you': reported_by_you,
                 'issues': issues
             }
             return render(request, 'HomePage.html', ctx)
@@ -29,8 +31,9 @@ class HomePage(View):
             return redirect('/profil')
 
 
-class ProjectDetalisView(View):
+class ProjectDetalisView(LoginRequiredMixin, View):
 
+    login_url = '/accounts/login'
     def get(self, requet, id):
         project = Project.objects.get(pk=id)
         ctx = {
@@ -39,8 +42,9 @@ class ProjectDetalisView(View):
         return render(requet, 'projectDetalisPage.html', ctx)
 
 
-class NewBugView(View):
+class NewBugView(LoginRequiredMixin, View):
 
+    login_url = '/accounts/login'
     def get(self, request):
         form = BugReportForm()
         ctx = {
@@ -54,6 +58,9 @@ class NewBugView(View):
             issue_name = form.cleaned_data['issue_name']
             issue_type = form.cleaned_data['issue_type']
             project = form.cleaned_data['project']
+            priority = form.cleaned_data['priority']
+            due_date = form.cleaned_data['due_date']
+            description = form.cleaned_data['description']
             user_id = request.user.id
             employee_id = Employee.objects.get(account_id=user_id)
             new_bug = Issue()
@@ -61,12 +68,16 @@ class NewBugView(View):
             new_bug.issue_type = issue_type
             new_bug.project = project
             new_bug.reported = employee_id
+            new_bug.priority = priority
+            new_bug.due_date = due_date
+            new_bug.description = description
             new_bug.save()
         return redirect('home')
 
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
 
+    login_url = '/accounts/login'
     def get(self, request, id):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
@@ -82,14 +93,16 @@ class ProfileView(View):
             return redirect('/profil')
 
 
-class ProfilFormView(View):
+class ProfilFormView(LoginRequiredMixin, View):
 
+    login_url = '/accounts/login'
     def get(self, request):
         form = ProfilForm()
         ctx = {
             'form': form,
         }
         return render(request, 'profilFormPage.html', ctx)
+
 
     def post(self, request):
         form = ProfilForm(request.POST)

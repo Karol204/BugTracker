@@ -12,6 +12,7 @@ Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
 
 
 class Employee(models.Model):
+
     account = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
@@ -22,6 +23,7 @@ class Employee(models.Model):
         return f'{self.first_name} {self.last_name} {self.email}'
 
 class Project(models.Model):
+
     project_name = models.CharField(max_length=250)
     description = models.CharField(max_length=650)
     deadline = models.DateField()
