@@ -20,7 +20,6 @@ class HomePage(View):
             employee_id = Employee.objects.get(account_id=user_id).id
             projects = Project.objects.filter(devs__id=employee_id)
             issues = Issue.objects.all()
-            print(issues)
             ctx = {
                 'projects': projects,
                 'issues': issues

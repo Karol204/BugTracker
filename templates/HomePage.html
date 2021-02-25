@@ -1,68 +1,42 @@
+
+{% extends '_base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <title>Document</title>
 
-</head>
-<body>
-<nav class="nav-container">
-    <ul>
-        <li><a href="#" style="color: #dd3233; font-weight: bold">Home</a></li>
-        <li><a href="{% url 'reportNewBug' %}">Raport a bug</a></li>
-        <li><a href="/profileView/{{ user.id }}">Profile</a></li>
-        {% if user.is_superuser %}
-        <li><a href="/admin">Admin Page</a></li>
-        {% endif %}
-        <li><a href="{% url 'account_logout' %}">Log out</a></li>
-
-    </ul>
-</nav>
-<div class="projectsContainer">
-     {% for project in projects %}
-         <div class="projectDetailsBox">
-         <div class="projectTitle">
-             <p><a href="/projectDetails/{{ project.id }}">{{ project }}</a></p>
-             <p>{{ project.description }}</p>
-         </div>
-        <div class="projectIssues">
+{% block content %}
 
 
-        <h3>Reported bugs:</h3>
-
-{% for issue in issues %}
 
 
-        {% if project.id == issue.project.id %}
-            <div class="border">
-        <div class="problemContainer">
-            <div class="projectOverviewContainer">
-                <h3>{{ issue.issue_name }}</h3>
-                <p>Reported by <span>{{ issue.reported.first_name }} {{ issue.reported.last_name }}</span></p>
-            </div>
-            <div class="projectOverviewContainer">
-                <h4>Type: {{ issue.issue_type }}</h4>
-                <p class="priorityType">{{ issue.priority }}</p>
-            </div>
 
-            <p class="issueDesc">{{ issue.description }}</p>
+    <div class="table-container">
+        <div >
+            <table class="table">
+                  <tr class="inside-content">
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Priority</th>
+                    <th>Project</th>
+                    <th>Deadline</th>
+                  </tr>
+                {% for issue in issues %}
+
+                    <tr class="inside-content">
+                        <td>{{ issue.issue_name }}</td>
+                        <td>Status</td>
+                        <td>{{ issue.reported }}</td>
+                        <td class="priorityType">{{ issue.priority }}</td>
+                        <td>{{ issue.project }}</td>
+                        <td>{{ issue.due_date }}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+
+
         </div>
-             </div>
-        {% endif %}
 
-
-
-{% endfor %}
-
-         </div>
-         </div>
-    {% endfor %}
     </div>
-</body>
-    <script src="{% static 'js/app.js' %}"></script>
-</html>
+
+
+{% endblock %}

@@ -1,32 +1,17 @@
+{% extends '_base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <title>Report a bug</title>
-  </head>
-  <body>
-  <nav class="nav-container">
-    <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'reportNewBug' %}" style="color: #dd3233; font-weight: bold">Raport a bug</a></li>
-        <li><a href="/profileView/{{ user.id }}">Profile</a></li>
-        <li><a href="{% url 'account_logout' %}">Log out</a></li>
-    </ul>
-</nav>
-    <h1>Prosze uzupelnij swoj profil</h1>
-    <form method="post" style="margin-top: 60px">
-        {% csrf_token %}
 
-            <div>
+{% block content %}
+
+    <h1>Prosze uzupelnij swoj profil</h1>
+    <form method="post" class="bug-form">
+        {% csrf_token %}
+            <div class="bug-report-form">
                 {{ form.as_p }}
+                <button type="submit">Report</button>
             </div>
-            <button type="submit">Report</button>
+
     </form>
 
     <script src="{% static 'js/app.js' %}"></script>
-  </body>
-</html>
-
+{% endblock %}

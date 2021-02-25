@@ -8,10 +8,7 @@
     font-family: 'Muli', 'sans-serif';
 }
 
-body {
-    background-color: #2d5f5d;
 
-}
 .loginPage {
     background-color: steelblue;
     color: #fff;
@@ -208,90 +205,102 @@ body {
 
 /* Project overview styles */
 
-
-.projectsContainer {
-    margin: 60px auto 0 auto;
+.table-container {
     max-width: 1200px;
-
+    margin: 100px auto;
+    background-color: aliceblue;
 }
 
-.projectDetailsBox {
+.table {
+    width: 100%;
+}
+
+.table tr th:not(:last-of-type) {
+    border-right: 1px solid #000;
+}
+
+.inside-content td {
+    padding: 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+/* Bug report form */
+
+.bug-report-form {
     display: flex;
+    margin-top: 100px;
+    width: 350px;
+    height: 400px;
+    background-color: lightblue;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: space-around;
-    width: 90%;
-    margin: 60px auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 1px 0px 10px 5px rgba(0,0,0,0.85);
-    /*background-color: #265077;*/
-    background-image: url("/static/images/coffee.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    z-index: -2;
+    padding: 50px 40px 25px;
 }
 
-.projectTitle {
-    width: 95%;
-    margin-bottom: 20px;
+.bug-report-form p {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    margin: 15px auto;
 }
 
-.projectTitle a {
-    font-size: 25px;
-    font-weight: bold;
-    color: #000;
-    text-decoration: none;
-
-}
-.projectTitle p {
+.bug-report-form p label {
+    position: absolute;
+    top: -25px;
+    left: 5px;
     font-size: 18px;
-    margin-top: 10px;
-}
-
-.problemContainer {
-    padding: 10px;
-    background-color: #265077;
-    border-radius: 20px;
 }
 
 
-.priorityType {
-    font-size: 20px;
-    font-weight: bold;
+
+
+.bug-report-form p input,
+.bug-report-form p select {
+    background-color: transparent;
+    border: 3px solid #fff;
+    width: 250px;
+    height: 50px;
+    font-size: 1.3rem;
 }
+
+.bug-report-form button {
+    width: 120px;
+    height: 40px;
+    border: 3px solid #fff;
+    border-radius: 3px;
+    background-color: transparent;
+    font-size: 1.2rem;
+
+}
+
+
+.bug-report-form button:hover {
+    background-color: #fff;
+    color: #494b68;
+}
+
+.bug-report-form button:focus {
+    outline: 0;
+}
+
+.bug-report-form button:active {
+    transform: scale(0.98);
+}
+
+
+
+
+
+
 
 .urgent {
-    color: #dd3233;
+    background-color:  rgba(200, 32, 33, 0.8);
 }
 
 .asap {
-    color: rebeccapurple;
-}
-
-
-.border {
-    border: 1px solid #000;
-    border-radius: 10px;
-    margin-top: 15px;
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.74);
-}
-
-.projectOverviewContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.projectOverviewContainer h3 {
-    text-transform: uppercase;
-}
-.projectOverviewContainer p span {
-    font-weight: bold;
-}
-
-.issueDesc {
-    margin-top: 10px;
-    padding-top: 5px;
-    border-top: 2px solid #650e3d;
+    background-color: rgba(140, 32, 203, 0.8);
 }
