@@ -9,7 +9,7 @@ Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
 class BugReportForm(forms.Form):
 
     issue_name = forms.CharField(max_length=250)
-    issue_type = forms.CharField()
+    issue_type = forms.CharField(max_length=5)
     project = forms.ModelChoiceField(queryset=Project.objects.all())
     priority = forms.ChoiceField(choices=Priority)
     due_date = forms.DateField()

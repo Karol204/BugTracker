@@ -16,6 +16,7 @@ class LandingPage(View):
 class HomePage(LoginRequiredMixin, View):
 
     login_url = '/accounts/login'
+
     def get(self, request):
         form = BugReportForm()
         user_id = request.user.id
@@ -32,6 +33,28 @@ class HomePage(LoginRequiredMixin, View):
             return render(request, 'HomePage.html', ctx)
         else:
             return redirect('/profil')
+
+    def post(self, request):
+
+        issue_name = request.POST.get('issue_name')
+        issue_type = request.POST.get('issue_type')
+        project = request.POST.get('project')
+        priority = request.POST.get('priority')
+        due_date = request.POST.get('due_date')
+        description = request.POST.get('description')
+        user_id = request.user.id
+        employee_id = Employee.objects.get(account_id=user_id)
+        new_bug = Issue()
+        new_bug.issue_name = issue_name
+        new_bug.issue_type = issue_type
+        new_bug.project = Project.objects.get(id=project)
+        new_bug.reported = employee_id
+        new_bug.priority = priority
+        new_bug.due_date = due_date
+        new_bug.description = description
+        new_bug.save()
+        print(new_bug)
+        return redirect('/homePage')
 
 
 class ProjectDetalisView(LoginRequiredMixin, View):

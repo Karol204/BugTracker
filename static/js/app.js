@@ -3,7 +3,6 @@ const loginLabels = document.querySelectorAll('.form-control label')
 
 const priorityTypes = document.querySelectorAll('.priorityType')
 
-const IssueDetailBtn = document.querySelectorAll('.title')
 const formBtn = document.getElementById('hidden-form')
 
 loginLabels.forEach(label => {
@@ -15,6 +14,15 @@ loginLabels.forEach(label => {
 
 // Report bug on popup
 
+const btnShowingBtn = document.querySelector('.btnshowingForm')
+
+btnShowingBtn.addEventListener('click', (e) => {
+    formBtn.classList.toggle('inactive')
+    btnShowingBtn.classList.toggle('active')
+})
+
+
+
 function AjaxFormSubmit() {
 
     let issue_name = document.getElementById('id_issue_name')
@@ -24,12 +32,15 @@ function AjaxFormSubmit() {
     let due_date = document.getElementById('id_due_date')
     let description = document.getElementById('id_description')
 
-    let page = "/ajax"
-    let data = {'issue_name' : issue_name, 'issue_type' : issue_type, 'project' : project, 'priority' : priority,
+    let page = "/homePage"
+    let info = {'issue_name' : issue_name, 'issue_type' : issue_type, 'project' : project, 'priority' : priority,
     'due_date' : due_date, 'description' : description, csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value}
-    $.post(page, data, function () {
-    formBtn.innerHTML = '<h1 class="confirmation">Done</h1>'
-    setTimeout(hideForm, 2000)
+    console.log(info)
+    $.post(page, info, function () {
+        $.success(function (){
+            formBtn.innerHTML = '<h1 class="confirmation">Done</h1>'
+            setTimeout(hideForm, 2000)
+        })
 })
 
 function hideForm() {
