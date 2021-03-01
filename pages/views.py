@@ -1,9 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Project, Employee, Issue
 from .forms import BugReportForm, ProfilForm
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
@@ -16,7 +15,6 @@ class LandingPage(View):
 
 class HomePage(LoginRequiredMixin, View):
 
-    login_url = '/accounts/login'
 
     def get(self, request):
         form = BugReportForm()
@@ -60,7 +58,6 @@ class HomePage(LoginRequiredMixin, View):
 
 class ProjectDetalisView(LoginRequiredMixin, View):
 
-    login_url = '/accounts/login'
     def get(self, requet, id):
         project = Project.objects.get(pk=id)
         ctx = {
@@ -105,7 +102,6 @@ class NewBugView(LoginRequiredMixin, View):
 
 class ProfileView(LoginRequiredMixin, View):
 
-    login_url = '/accounts/login'
     def get(self, request, id):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
@@ -122,7 +118,6 @@ class ProfileView(LoginRequiredMixin, View):
 
 class ProfilFormView(LoginRequiredMixin, View):
 
-    login_url = '/accounts/login'
 
     def get(self, request):
         user_id = request.user.id

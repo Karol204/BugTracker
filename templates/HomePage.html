@@ -13,7 +13,7 @@
             <table class="table">
                   <tr class="inside-content">
                     <th>Title</th>
-                    <th>Action</th>
+                    <th>Owner</th>
                     <th>Priority</th>
                     <th>Project</th>
                     <th>Deadline</th>
@@ -21,10 +21,15 @@
                 {% for issue in issues %}
 
                     <tr class="inside-content">
-                        <td class="title inactive">{{ issue.issue_name }}
+                        <td class="title inactive">{{ issue.issue_name }}</td>
+                        <td><p>{{ issue.reported.profil_pic }}</p>
 
-                        </td>
-                        <td>{{ issue.reported }}</td>
+                            {% if issue.reported.profil_pic %}
+                                    <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                            {% else %}
+                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
+                            {% endif %}
+                            {{ issue.reported }}</td>
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
                         <td>{{ issue.due_date }}</td>

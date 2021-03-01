@@ -346,3 +346,13 @@
     opacity: 0;
     transition: opacity 0.1s .18s ease;
 }
+
+
+
+td img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: translateY(26%);
+}
