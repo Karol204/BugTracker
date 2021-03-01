@@ -5,76 +5,88 @@
 {% block content %}
 
 
+    {% for project in projects %}
 
 
 
-    <div class="table-container">
-        <div >
-            <table class="table">
-                  <tr class="inside-content">
-                    <th>Title</th>
-                    <th>Owner</th>
-                    <th>Priority</th>
-                    <th>Project</th>
-                    <th>Deadline</th>
-                  </tr>
-                {% for issue in issues %}
 
-                    <tr class="inside-content">
-                        <td class="title inactive">{{ issue.issue_name }}</td>
-                        <td><p>{{ issue.reported.profil_pic }}</p>
-
-                            {% if issue.reported.profil_pic %}
-                                    <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
-                            {% else %}
-                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
-                            {% endif %}
-                            {{ issue.reported }}</td>
-                        <td class="priorityType">{{ issue.priority }}</td>
-                        <td>{{ issue.project }}</td>
-                        <td>{{ issue.due_date }}</td>
-                    </tr>
-
-                {% endfor %}
-            </table>
+    {% endfor %}
 
 
-        </div>
-
-    </div>
-
-    <h2>Reported by you</h2>
-    <div class="table-container">
-        <div >
-            <table class="table">
-                  <tr class="inside-content">
-                    <th>Title</th>
-                    <th>Action</th>
-                    <th>Priority</th>
-                    <th>Project</th>
-                    <th>Deadline</th>
-                    <th>Delete</th>
-                  </tr>
-                {% for yourIssue in reported_by_you %}
-
-                    <tr class="inside-content">
-                        <td class="title inactive" data-id="{{ yourIssue.id }}">
-                            {{ yourIssue.issue_name }}
-                        </td>
-                        <td>{{ yourIssue.reported }}</td>
-                        <td class="priorityType">{{ yourIssue.priority }}</td>
-                        <td>{{ yourIssue.project }}</td>
-                        <td>{{ yourIssue.due_date }}</td>
-                        <td><a href="/delete/{{ yourIssue.id }}"><i class="fas fa-times" ></i></a></td>
-                    </tr>
-
-                {% endfor %}
-            </table>
 
 
-        </div>
 
-    </div>
+
+{##}
+{##}
+{##}
+{##}
+{#    <div class="table-container">#}
+{#        <div >#}
+{#            <table class="table">#}
+{#                  <tr class="inside-content">#}
+{#                    <th>Title</th>#}
+{#                    <th>Owner</th>#}
+{#                    <th>Priority</th>#}
+{#                    <th>Project</th>#}
+{#                    <th>Deadline</th>#}
+{#                  </tr>#}
+{#                {% for issue in issues %}#}
+{##}
+{#                    <tr class="inside-content">#}
+{#                        <td class="title inactive">{{ issue.issue_name }}</td>#}
+{#                        <td>#}
+{#                            {% if issue.reported.profil_pic %}#}
+{#                                    <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">#}
+{#                            {% else %}#}
+{#                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">#}
+{#                            {% endif %}#}
+{#                            {{ issue.reported }}</td>#}
+{#                        <td class="priorityType">{{ issue.priority }}</td>#}
+{#                        <td>{{ issue.project }}</td>#}
+{#                        <td>{{ issue.due_date }}</td>#}
+{#                    </tr>#}
+{##}
+{#                {% endfor %}#}
+{#            </table>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#    <h2>Reported by you</h2>#}
+{#    <div class="table-container">#}
+{#        <div >#}
+{#            <table class="table">#}
+{#                  <tr class="inside-content">#}
+{#                    <th>Title</th>#}
+{#                    <th>Action</th>#}
+{#                    <th>Priority</th>#}
+{#                    <th>Project</th>#}
+{#                    <th>Deadline</th>#}
+{#                    <th>Delete</th>#}
+{#                  </tr>#}
+{#                {% for yourIssue in reported_by_you %}#}
+{##}
+{#                    <tr class="inside-content">#}
+{#                        <td class="title inactive" data-id="{{ yourIssue.id }}">#}
+{#                            {{ yourIssue.issue_name }}#}
+{#                        </td>#}
+{#                        <td>{{ yourIssue.reported }}</td>#}
+{#                        <td class="priorityType">{{ yourIssue.priority }}</td>#}
+{#                        <td>{{ yourIssue.project }}</td>#}
+{#                        <td>{{ yourIssue.due_date }}</td>#}
+{#                        <td><a href="/delete/{{ yourIssue.id }}"><i class="fas fa-times" ></i></a></td>#}
+{#                    </tr>#}
+{##}
+{#                {% endfor %}#}
+{#            </table>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
 
     <button class="btnshowingForm"><p>Report issue</p></button>
 

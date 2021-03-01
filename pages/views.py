@@ -15,18 +15,18 @@ class LandingPage(View):
 
 class HomePage(LoginRequiredMixin, View):
 
-
     def get(self, request):
         form = BugReportForm()
         user_id = request.user.id
+
         employee = Employee.objects.filter(account_id=user_id)
         if len(employee) == 1:
             employee_id = Employee.objects.get(account_id=user_id).id
             reported_by_you = Issue.objects.filter(reported_id=employee_id)
-            issues = Issue.objects.all()
+            projects = Project.objects.filter(devs=employee_id)
             ctx = {
                 'reported_by_you': reported_by_you,
-                'issues': issues,
+                'projects': projects,
                 'form': form
             }
             return render(request, 'HomePage.html', ctx)
@@ -52,7 +52,6 @@ class HomePage(LoginRequiredMixin, View):
         new_bug.due_date = due_date
         new_bug.description = description
         new_bug.save()
-        print(new_bug)
         return HttpResponse('Success')
 
 
@@ -68,7 +67,6 @@ class ProjectDetalisView(LoginRequiredMixin, View):
 
 class NewBugView(LoginRequiredMixin, View):
 
-    login_url = '/accounts/login'
 
     def get(self, request):
         form = BugReportForm()

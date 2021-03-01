@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Issue, Employee, Project
+from .models import Issue, Employee, Project, Group
 # Register your models here.
 
 
@@ -14,6 +14,9 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('project_name', 'description', 'deadline')
+
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('name', 'developers', 'project')
 
 
 

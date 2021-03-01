@@ -10,7 +10,6 @@ Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
 
 
 
-
 class Employee(models.Model):
 
     account = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -47,3 +46,10 @@ class Issue(models.Model):
 
     def __str__(self):
         return f'{self.issue_name}'
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=64)
+    developers = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+
