@@ -4,6 +4,13 @@
 {% block content %}
 <div style="margin-top: 60px">
 
+{% if request.user.employee.profil_pic %}
+    <div><img src="{{ request.user.employee.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px"></div>
+{% else %}
+    <div><img src="#" alt="{{ employee.first_name }}" width="240px"></div>
+{% endif %}
+
+
         <ul>
             <li><h3>First name:</h3> {{ employee.first_name }}</li>
             <li><h3>Last name:</h3> {{ employee.last_name }}</li>

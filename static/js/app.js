@@ -23,7 +23,7 @@ btnShowingBtn.addEventListener('click', (e) => {
 
 
 
-function AjaxFormSubmit() {
+function AjaxFormSubmit(e) {
 
     let issue_name = document.getElementById('id_issue_name')
     let issue_type = document.getElementById('id_issue_type')
@@ -33,27 +33,34 @@ function AjaxFormSubmit() {
     let description = document.getElementById('id_description')
 
     let page = "/homePage"
-    let info = {'issue_name' : issue_name, 'issue_type' : issue_type, 'project' : project, 'priority' : priority,
-    'due_date' : due_date, 'description' : description, csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    let info = {
+        'issue_name': issue_name,
+        'issue_type': issue_type,
+        'project': project,
+        'priority': priority,
+        'due_date': due_date,
+        'description': description,
+        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
+    }
     console.log(info)
-    $.post(page, info, function () {
-        $.success(function (){
-            formBtn.innerHTML = '<h1 class="confirmation">Done</h1>'
-            setTimeout(hideForm, 2000)
-        })
-})
 
-function hideForm() {
-    formBtn.classList.add('inactive')
-}}
-
+    let posting = $.post(page, info)
+    posting.done(() => {
+        $('#result').text('Success')
+    })
+    posting.fail(() => {
+        $('#result').text('Fail')
+    })
+}
 
 // Priority box color
 
-priorityTypes.forEach((e) => {
-    if(e.innerHTML === 'Urgent') {
-        e.classList.add('urgent')
-    } else if(e.innerHTML === 'ASAP'){
-        e.classList.add('asap')
-    }
-})
+    priorityTypes.forEach((e) => {
+        if (e.innerHTML === 'Urgent') {
+            e.classList.add('urgent')
+        } else if (e.innerHTML === 'ASAP') {
+            e.classList.add('asap')
+        }
+    })
+
+

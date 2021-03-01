@@ -133,6 +133,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
 
+MEDIA_URL = '/images/'
+MEDIA_ROOT = str(BASE_DIR.joinpath('static/images'))
+
+
+
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_URL = '/accounts/login'

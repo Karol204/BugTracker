@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Project, Employee, Issue
@@ -54,7 +55,7 @@ class HomePage(LoginRequiredMixin, View):
         new_bug.description = description
         new_bug.save()
         print(new_bug)
-        return redirect('/homePage')
+        return HttpResponse('Success')
 
 
 class ProjectDetalisView(LoginRequiredMixin, View):
@@ -108,7 +109,6 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request, id):
         user_id = request.user.id
         employee = Employee.objects.filter(account_id=user_id)
-        print(employee)
 
         if employee:
             person = Employee.objects.get(account_id=user_id)
@@ -125,7 +125,13 @@ class ProfilFormView(LoginRequiredMixin, View):
     login_url = '/accounts/login'
 
     def get(self, request):
-        form = ProfilForm()
+        user_id = request.user.id
+        employee = Employee.objects.filter(account_id=user_id)
+        if employee:
+            person = Employee.objects.get(account_id=user_id)
+            form = ProfilForm(isinstance(person))
+        else:
+            form = ProfilForm()
         ctx = {
             'form': form,
         }
@@ -133,35 +139,13 @@ class ProfilFormView(LoginRequiredMixin, View):
 
 
     def post(self, request):
-        form = ProfilForm(request.POST)
+        form = ProfilForm(request.POST, request.FILES,)
         if form.is_valid():
-            new_employee = Employee()
-            new_employee.account = request.user
-            new_employee.first_name = form.cleaned_data['first_name']
-            new_employee.last_name = form.cleaned_data['last_name']
-            new_employee.position = form.cleaned_data['position']
-            new_employee.email = form.cleaned_data['email']
-            new_employee.save()
+            form.save()
         return redirect('/homePage')
 
 
-def post_bug_form(request):
-    if request.method == 'POST':
-        issue_name = request.POST.get('issue_name')
-        issue_type = request.POST.get('issue_type')
-        project = request.POST.get('project')
-        priority = request.POST.get('priority')
-        due_date = request.POST.get('due_date')
-        description = request.POST.get('description')
-        user_id = request.user.id
-        employee_id = Employee.objects.get(account_id=user_id)
-        new_bug = Issue()
-        new_bug.issue_name = issue_name
-        new_bug.issue_type = issue_type
-        new_bug.project = project
-        new_bug.reported = employee_id
-        new_bug.priority = priority
-        new_bug.due_date = due_date
-        new_bug.description = description
-        new_bug.save()
-        print(new_bug)
+def delete_issue(request, id):
+    issue = Issue.objects.get(pk=id)
+    issue.delete()
+    return redirect('/homePage')

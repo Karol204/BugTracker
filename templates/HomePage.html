@@ -48,6 +48,7 @@
                     <th>Priority</th>
                     <th>Project</th>
                     <th>Deadline</th>
+                    <th>Delete</th>
                   </tr>
                 {% for yourIssue in reported_by_you %}
 
@@ -59,6 +60,7 @@
                         <td class="priorityType">{{ yourIssue.priority }}</td>
                         <td>{{ yourIssue.project }}</td>
                         <td>{{ yourIssue.due_date }}</td>
+                        <td><a href="/delete/{{ yourIssue.id }}"><i class="fas fa-times" ></i></a></td>
                     </tr>
 
                 {% endfor %}
@@ -69,19 +71,19 @@
 
     </div>
 
-    <button class="btnshowingForm">Report Issue</button>
+    <button class="btnshowingForm"><p>Report issue</p></button>
 
     <div class="form inactive" id="hidden-form">
-        <form method="post" class="bug-form">
-        {% csrf_token %}
-            <div class="bug-report-form">
-                {{ form.as_p }}
-                <button type="submit" onclick="AjaxFormSubmit()">Report</button>
-            </div>
+        <div id="result"></div>
+            <form method="post" class="bug-form">
+                {% csrf_token %}
+                <div class="bug-report-form">
+                    {{ form.as_p }}
+                    <button type="submit" onclick="AjaxFormSubmit()">Report</button>
+                </div>
 
-    </form>
+             </form>
 
-    </div>
-
+        </div>
 
 {% endblock %}

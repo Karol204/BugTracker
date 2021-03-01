@@ -18,6 +18,7 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=60)
     position = models.CharField(choices=Positions, max_length=7)
     email = models.EmailField()
+    profil_pic = models.ImageField(upload_to='profileImg/', blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.email}'
