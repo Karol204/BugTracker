@@ -3,14 +3,51 @@
 {% load static %}
 
 {% block content %}
+<div style="margin-top: 60px">
+
+</div>
+
+        {% for project in projects %}
+            <div class="table-container">
+        <div >
+            <table class="table">
+                  <tr class="inside-content">
+                    <th>Project Name</th>
+                    <th>Deadline</th>
+                    <th>Team</th>
+                    <th>Created</th>
+
+                  </tr>
 
 
-    {% for project in projects %}
+                    <tr class="inside-content">
+                        <td class="title inactive"><a href="/projectDetails/{{ project.id }}">{{ project.project_name }}</a></td>
+                        <td>{{ project.deadline }}</td>
+                    <td>
+                        {% for developer in project.devs.all %}<a href="/profile/{{ developer.id}}">
+
+                             {% if developer.profil_pic %}
+                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                            {% else %}
+                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
+                            {% endif %}
+                            {{ developer }} <br>
+                            </a>
+                        {% endfor %}
+
+                    </td>
+                        <td>{{ project.added_date }}</td>
+                    </tr>
 
 
+            </table>
+
+        </div>
+
+    </div>
+{% endfor %}
 
 
-    {% endfor %}
 
 
 

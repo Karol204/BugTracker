@@ -22,4 +22,9 @@
     </div>
 
 </div>
+
+    <h2>Reported by {{ employee.first_name }}</h2>
+    {% for issue in reported_by_this_dev %}
+    <p>{{ issue.issue_name }}</p>
+    {% endfor %}
 {% endblock %}

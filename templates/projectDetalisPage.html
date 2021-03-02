@@ -2,11 +2,123 @@
 {% load static %}
 
 {% block content %}
-{{ project.name }}
-Devs:
-<ul>
-    {% for dev in project.devs.all %}
-    <li>{{ dev }} {{ dev.position }}</li>
-    {% endfor %}
-</ul>
+    <div style="margin-top: 100px">
+
+
+
+            <div class="table-container">
+        <div >
+        <h1>{{ project.project_name }}</h1>
+        <h3>{{ project.description }}</h3>
+
+            <h4>Team:</h4>
+            <ul>{% for developer in project.devs.all %}
+            <li>
+                <a href="/profile/{{ developer.id}}">
+
+                             {% if developer.profil_pic %}
+                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                            {% else %}
+                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
+                            {% endif %}
+                            {{ developer }} <br>
+                            </a>
+
+            </li>{% endfor %}
+            </ul>
+
+        <h3>Reported Issue</h3>
+
+        <div class="table-container">
+            <table class="table">
+                  <tr class="inside-content">
+                    <th>Title</th>
+                    <th>Owner</th>
+                    <th>Priority</th>
+                    <th>Project</th>
+                    <th>Deadline</th>
+                  </tr>
+                {% for issue in issues %}
+                    <tr class="inside-content">
+                        <td class="title inactive">{{ issue.issue_name }}</td>
+                        <td>
+                            {% if issue.reported.profil_pic %}
+                                    <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                            {% else %}
+                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
+                            {% endif %}
+                            {{ issue.reported }}</td>
+                        <td class="priorityType">{{ issue.priority }}</td>
+                        <td>{{ issue.project }}</td>
+                        <td>{{ issue.due_date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+    </div>
+
+<button class="btnshowingForm"><p>Report issue</p></button>
+
+    <div class="form inactive" id="hidden-form">
+        <div id="result"></div>
+            <form method="post" class="bug-form">
+                {% csrf_token %}
+                <div class="bug-report-form">
+                    {{ form.as_p }}
+                    <button type="submit" onclick="AjaxFormSubmit()">Report</button>
+                </div>
+
+             </form>
+
+        </div>
+
+
+
+{#            <table class="table">#}
+{#                  <tr class="inside-content">#}
+{#                    <th>Project Name</th>#}
+{#                    <th>Deadline</th>#}
+{#                    <th>Team</th>#}
+{#                    <th>Created</th>#}
+{##}
+{#                  </tr>#}
+{##}
+{##}
+{#                    <tr class="inside-content">#}
+{#                        <td class="title inactive"><a href="/projectDetails/{{ project.id }}">{{ project.project_name }}</a></td>#}
+{#                        <td>{{ project.deadline }}</td>#}
+{#                    <td>#}
+{#                        {% for developer in project.devs.all %}<a href="/profile/{{ developer.id}}">#}
+{##}
+{#                             {% if developer.profil_pic %}#}
+{#                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">#}
+{#                            {% else %}#}
+{#                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">#}
+{#                            {% endif %}#}
+{#                            {{ developer }} <br>#}
+{#                            </a>#}
+{#                        {% endfor %}#}
+{##}
+{#                    </td>#}
+{#                        <td>{{ project.added_date }}</td>#}
+{#                    </tr>#}
+{##}
+{##}
+{#            </table>#}
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
 {% endblock %}

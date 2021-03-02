@@ -18,7 +18,6 @@ class HomePage(LoginRequiredMixin, View):
     def get(self, request):
         form = BugReportForm()
         user_id = request.user.id
-
         employee = Employee.objects.filter(account_id=user_id)
         if len(employee) == 1:
             employee_id = Employee.objects.get(account_id=user_id).id
@@ -58,9 +57,13 @@ class HomePage(LoginRequiredMixin, View):
 class ProjectDetalisView(LoginRequiredMixin, View):
 
     def get(self, requet, id):
+        form = BugReportForm()
         project = Project.objects.get(pk=id)
+        issues = Issue.objects.filter(project=project)
         ctx = {
-            'project': project
+            'project': project,
+            'issues': issues,
+            'form': form
         }
         return render(requet, 'projectDetalisPage.html', ctx)
 
@@ -136,6 +139,17 @@ class ProfilFormView(LoginRequiredMixin, View):
         if form.is_valid():
             form.save()
         return redirect('/homePage')
+
+class DeveloperProfileView(LoginRequiredMixin, View):
+
+    def get(self, request, id):
+        person = Employee.objects.get(pk=id)
+        reported_by_this_dev = Issue.objects.filter(reported_id=id)
+        ctx = {
+            'employee': person,
+            'reported_by_this_dev': reported_by_this_dev
+        }
+        return render(request, 'profilPage.html', ctx)
 
 
 def delete_issue(request, id):

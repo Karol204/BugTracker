@@ -213,6 +213,8 @@
 
 .table {
     width: 100%;
+    margin-top: 50px;
+    border: 1px solid #000;
 }
 
 .table tr th:not(:last-of-type) {
@@ -323,7 +325,10 @@
     transition: .3s ease-in;
 }
 
-.btnshowingForm:hover {
+.btnshowingForm:hover,
+.btnshowingForm:active,
+.btnshowingForm:focus
+{
     width: 150px;
     height: 70px;
 }
