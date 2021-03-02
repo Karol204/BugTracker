@@ -31,6 +31,7 @@ function AjaxFormSubmit(e) {
     let priority = document.getElementById('id_priority')
     let due_date = document.getElementById('id_due_date')
     let description = document.getElementById('id_description')
+    let doc = document.getElementById('id_attachment')
 
     let page = "/homePage"
     let info = {
@@ -40,6 +41,8 @@ function AjaxFormSubmit(e) {
         'priority': priority,
         'due_date': due_date,
         'description': description,
+        'doc': doc,
+        enctype: 'multipart/form-data',
         csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
     }
     console.log(info)

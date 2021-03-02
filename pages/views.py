@@ -23,10 +23,12 @@ class HomePage(LoginRequiredMixin, View):
             employee_id = Employee.objects.get(account_id=user_id).id
             reported_by_you = Issue.objects.filter(reported_id=employee_id)
             projects = Project.objects.filter(devs=employee_id)
+            issues = Issue.objects.all()
             ctx = {
                 'reported_by_you': reported_by_you,
                 'projects': projects,
-                'form': form
+                'form': form,
+                'issues': issues
             }
             return render(request, 'HomePage.html', ctx)
         else:
@@ -40,6 +42,7 @@ class HomePage(LoginRequiredMixin, View):
         priority = request.POST.get('priority')
         due_date = request.POST.get('due_date')
         description = request.POST.get('description')
+        document = request.POST.get('doc')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
         new_bug = Issue()
@@ -50,6 +53,7 @@ class HomePage(LoginRequiredMixin, View):
         new_bug.priority = priority
         new_bug.due_date = due_date
         new_bug.description = description
+        new_bug.attachment = document
         new_bug.save()
         return HttpResponse('Success')
 

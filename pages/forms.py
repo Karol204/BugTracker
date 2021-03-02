@@ -1,6 +1,5 @@
 from django import forms
-from .models import Project, Employee
-
+from .models import Project, Employee, Issue
 
 Types = (('Bug', 'Bug'), ('Data', 'Database'), ('Front', 'Front-end'))
 
@@ -14,6 +13,7 @@ class BugReportForm(forms.Form):
     priority = forms.ChoiceField(choices=Priority)
     due_date = forms.DateField()
     description = forms.CharField(max_length=250)
+    attachment = forms.FileField()
 
 
 class ProfilForm(forms.ModelForm):

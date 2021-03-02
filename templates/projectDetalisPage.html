@@ -19,7 +19,7 @@
                              {% if developer.profil_pic %}
                                     <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
                             {% else %}
-                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
+                                    <img class="prof-pic def" src="/static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
                             {% endif %}
                             {{ developer }} <br>
                             </a>
@@ -37,6 +37,7 @@
                     <th>Priority</th>
                     <th>Project</th>
                     <th>Deadline</th>
+                    <th>Status</th>
                   </tr>
                 {% for issue in issues %}
                     <tr class="inside-content">
@@ -45,15 +46,17 @@
                             {% if issue.reported.profil_pic %}
                                     <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
                             {% else %}
-                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
+                                    <img class="prof-pic def" src="/static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
                             {% endif %}
                             {{ issue.reported }}</td>
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
                         <td>{{ issue.due_date }}</td>
+                        <td>{{ issue.status }}</td>
                     </tr>
                 {% endfor %}
             </table>
+
 
 
     </div>
@@ -66,46 +69,12 @@
                 {% csrf_token %}
                 <div class="bug-report-form">
                     {{ form.as_p }}
-                    <button type="submit" onclick="AjaxFormSubmit()">Report</button>
+                    <button type="submit">Report</button>
                 </div>
 
              </form>
 
         </div>
-
-
-
-{#            <table class="table">#}
-{#                  <tr class="inside-content">#}
-{#                    <th>Project Name</th>#}
-{#                    <th>Deadline</th>#}
-{#                    <th>Team</th>#}
-{#                    <th>Created</th>#}
-{##}
-{#                  </tr>#}
-{##}
-{##}
-{#                    <tr class="inside-content">#}
-{#                        <td class="title inactive"><a href="/projectDetails/{{ project.id }}">{{ project.project_name }}</a></td>#}
-{#                        <td>{{ project.deadline }}</td>#}
-{#                    <td>#}
-{#                        {% for developer in project.devs.all %}<a href="/profile/{{ developer.id}}">#}
-{##}
-{#                             {% if developer.profil_pic %}#}
-{#                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">#}
-{#                            {% else %}#}
-{#                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">#}
-{#                            {% endif %}#}
-{#                            {{ developer }} <br>#}
-{#                            </a>#}
-{#                        {% endfor %}#}
-{##}
-{#                    </td>#}
-{#                        <td>{{ project.added_date }}</td>#}
-{#                    </tr>#}
-{##}
-{##}
-{#            </table>#}
 
         </div>
 

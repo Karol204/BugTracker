@@ -8,6 +8,11 @@ Positions = (('fron', 'Front-end developer'), ('back', 'Back-end developer'), ('
 
 Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
 
+Status = (
+    ('New', 'New'),
+    ('In Progress', 'In Progress'),
+    ('Done', 'Done')
+)
 
 
 class Employee(models.Model):
@@ -30,6 +35,7 @@ class Project(models.Model):
     devs = models.ManyToManyField(Employee)
     priority = models.CharField(choices=Priority, max_length=6)
     added_date = models.DateField(auto_now=True)
+    attachment = models.FileField(upload_to='docs/projects', blank=True, null=True)
 
     def __str__(self):
         return f'{self.project_name}'
@@ -43,6 +49,8 @@ class Issue(models.Model):
     priority = models.CharField(choices=Priority, max_length=6)
     description = models.CharField(max_length=250)
     due_date = models.DateField()
+    attachment = models.FileField(upload_to='docs/issues', blank=True, null=True)
+    status = models.CharField(choices=Status, max_length=11)
 
     def __str__(self):
         return f'{self.issue_name}'
