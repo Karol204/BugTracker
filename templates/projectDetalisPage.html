@@ -64,7 +64,14 @@
 <button class="btnshowingForm"><p>Report issue</p></button>
 
     <div class="form inactive" id="hidden-form">
-        <div id="result"></div>
+        <div class="form-group">
+              <div class="alert alert-success" id="ins_success" style="display:none">
+
+              </div>
+               <div class="alert alert-danger" id="ins_error" style="display:none">
+
+              </div>
+          </div>
             <form method="post" class="bug-form">
                 {% csrf_token %}
                 <div class="bug-report-form">

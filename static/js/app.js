@@ -41,19 +41,35 @@ function AjaxFormSubmit(e) {
         'priority': priority,
         'due_date': due_date,
         'description': description,
-        'doc': doc,
-        enctype: 'multipart/form-data',
         csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
     }
     console.log(info)
+    $.ajax({
+        url: '/homePage',
+        type: 'POST',
+        data: {
+        'issue_name': issue_name,
+        'issue_type': issue_type,
+        'project': project,
+        'priority': priority,
+        'due_date': due_date,
+        'description': description,
+        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
+    }
+    }).ajaxSuccess(function (response) {
+        console.log('success')
+    }).fail(function () {
+        console.log('fail')
+    })
 
-    let posting = $.post(page, info)
-    posting.done(() => {
-        $('#result').text('Success')
-    })
-    posting.fail(() => {
-        $('#result').text('Fail')
-    })
+
+    // let posting = $.post(page, info)
+    // posting.done(() => {
+    //     $('#result').text('Success')
+    // })
+    // posting.fail(() => {
+    //     $('#result').text('Fail')
+    // })
 }
 
 // Priority box color

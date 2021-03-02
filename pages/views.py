@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Project, Employee, Issue
@@ -45,17 +45,28 @@ class HomePage(LoginRequiredMixin, View):
         document = request.POST.get('doc')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
-        new_bug = Issue()
-        new_bug.issue_name = issue_name
-        new_bug.issue_type = issue_type
-        new_bug.project = Project.objects.get(id=project)
-        new_bug.reported = employee_id
-        new_bug.priority = priority
-        new_bug.due_date = due_date
-        new_bug.description = description
-        new_bug.attachment = document
-        new_bug.save()
-        return HttpResponse('Success')
+        try:
+            new_bug = Issue()
+            new_bug.issue_name = issue_name
+            new_bug.issue_type = issue_type
+            new_bug.project = Project.objects.get(id=project)
+            new_bug.reported = employee_id
+            new_bug.priority = priority
+            new_bug.due_date = due_date
+            new_bug.description = description
+            new_bug.attachment = document
+            new_bug.save()
+            ctx = {
+                'error': True,
+                'errorMessage': 'Successfully added'
+            }
+            return JsonResponse(ctx, safe=False)
+        except:
+            ctx = {
+                'error': False,
+                'errorMessage': 'Fail'
+            }
+            return JsonResponse(ctx, safe=False)
 
 
 class ProjectDetalisView(LoginRequiredMixin, View):
