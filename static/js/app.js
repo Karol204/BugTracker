@@ -22,55 +22,51 @@ btnShowingBtn.addEventListener('click', (e) => {
 })
 
 
+$(".btn-add-issue").click(function (){
 
-function AjaxFormSubmit(e) {
 
-    let issue_name = document.getElementById('id_issue_name')
-    let issue_type = document.getElementById('id_issue_type')
-    let project = document.getElementById('id_project')
-    let priority = document.getElementById('id_priority')
-    let due_date = document.getElementById('id_due_date')
-    let description = document.getElementById('id_description')
+    let issue_name = document.getElementById('id_issue_name').value
+    let issue_type = document.getElementById('id_issue_type').value
+    let project = document.getElementById('id_project').value
+    let priority = document.getElementById('id_priority').value
+    let due_date = document.getElementById('id_due_date').value
+    let description = document.getElementById('id_description').value
     let doc = document.getElementById('id_attachment')
 
-    let page = "/homePage"
-    let info = {
-        'issue_name': issue_name,
-        'issue_type': issue_type,
-        'project': project,
-        'priority': priority,
-        'due_date': due_date,
-        'description': description,
-        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
-    }
-    console.log(info)
-    $.ajax({
+    if(issue_name == "") {
+        $("#result").text('Please Enter Name')
+    } else if(issue_type == "") {
+        $("#result").text('Please Select Type')
+    }else if(project == "") {
+        $("#result").text('Please Select Project')
+    }else if(priority == "") {
+        $("#result").text('Please Select Priority')
+    }else if(due_date == "") {
+        $("#result").text('Please Enter Date')
+    }else if(description == "") {
+        $("#result").text('Please Enter Description')
+    } else {
+            $.ajax({
         url: '/homePage',
         type: 'POST',
         data: {
-        'issue_name': issue_name,
-        'issue_type': issue_type,
-        'project': project,
-        'priority': priority,
-        'due_date': due_date,
-        'description': description,
+        issue_name: issue_name,
+        issue_type: issue_type,
+        project: project,
+        priority: priority,
+        due_date: due_date,
+        description: description,
         csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
     }
-    }).ajaxSuccess(function (response) {
-        console.log('success')
+    }).done(function(response) {
+        $("#result").text(response['errorMessage'])
     }).fail(function () {
-        console.log('fail')
+        $("#result").text(response['errorMessage'])
     })
+    }
 
 
-    // let posting = $.post(page, info)
-    // posting.done(() => {
-    //     $('#result').text('Success')
-    // })
-    // posting.fail(() => {
-    //     $('#result').text('Fail')
-    // })
-}
+})
 
 // Priority box color
 

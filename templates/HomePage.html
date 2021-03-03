@@ -53,7 +53,8 @@
                 {% csrf_token %}
                 <div class="bug-report-form">
                     {{ form.as_p }}
-                    <button type="submit" onclick="AjaxFormSubmit()">Report</button>
+                    <input type="button" name="submit" class="btn-add-issue btn-block btn-info btn-insert-data" value="INSERT STUDENT">
+{#                    <button type="submit" id="btn-add-issue">Report</button>#}
                 </div>
 
              </form>

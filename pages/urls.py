@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from .views import LandingPage, HomePage, ProjectDetalisView, delete_issue, NewBugView, ProfileView, ProfilFormView, \
-    DeveloperProfileView
+    DeveloperProfileView, add_issue
 
 
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     path('profileView/<int:id>', ProfileView.as_view(), name='profile'),
     path('profil', ProfilFormView.as_view(), name='profileForm'),
     path('profile/<int:id>', DeveloperProfileView.as_view()),
-    path('delete/<int:id>', delete_issue)
+    path('delete/<int:id>', delete_issue),
+    path('addIssue/', add_issue)
 ]

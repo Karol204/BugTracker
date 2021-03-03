@@ -93,27 +93,6 @@ class NewBugView(LoginRequiredMixin, View):
         }
         return render(request, 'bugReportFormPage.html', ctx)
 
-    def post(self, request):
-        form = BugReportForm(request.POST)
-        if form.is_valid():
-            issue_name = form.cleaned_data['issue_name']
-            issue_type = form.cleaned_data['issue_type']
-            project = form.cleaned_data['project']
-            priority = form.cleaned_data['priority']
-            due_date = form.cleaned_data['due_date']
-            description = form.cleaned_data['description']
-            user_id = request.user.id
-            employee_id = Employee.objects.get(account_id=user_id)
-            new_bug = Issue()
-            new_bug.issue_name = issue_name
-            new_bug.issue_type = issue_type
-            new_bug.project = project
-            new_bug.reported = employee_id
-            new_bug.priority = priority
-            new_bug.due_date = due_date
-            new_bug.description = description
-            new_bug.save()
-        return redirect('home')
 
 
 class ProfileView(LoginRequiredMixin, View):
@@ -171,3 +150,38 @@ def delete_issue(request, id):
     issue = Issue.objects.get(pk=id)
     issue.delete()
     return redirect('/homePage')
+
+def add_issue(request):
+    form = BugReportForm(request.POST)
+    if form.is_valid():
+        issue_name = form.cleaned_data['issue_name']
+        issue_type = form.cleaned_data['issue_type']
+        project = form.cleaned_data['project']
+        priority = form.cleaned_data['priority']
+        due_date = form.cleaned_data['due_date']
+        description = form.cleaned_data['description']
+        user_id = request.user.id
+        employee_id = Employee.objects.get(account_id=user_id)
+        document = request.POST.get('doc')
+        try:
+            new_bug = Issue()
+            new_bug.issue_name = issue_name
+            new_bug.issue_type = issue_type
+            new_bug.project = Project.objects.get(id=project)
+            new_bug.reported = employee_id
+            new_bug.priority = priority
+            new_bug.due_date = due_date
+            new_bug.description = description
+            # new_bug.attachment = document
+            new_bug.save()
+            ctx = {
+                'error': True,
+                'errorMessage': 'Successfully added'
+            }
+            return JsonResponse(ctx, safe=False)
+        except:
+            ctx = {
+                'error': False,
+                'errorMessage': 'Fail'
+            }
+        return JsonResponse(ctx, safe=False)
