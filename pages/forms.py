@@ -27,8 +27,7 @@ class BugReportForm(forms.Form):
     priority = forms.ChoiceField(choices=Priority)
     due_date = forms.DateField()
     description = forms.CharField(max_length=250)
-    # attachment = forms.FileField()
-    status = forms.ChoiceField(choices=Status)
+    attachment = forms.FileField()
 
 class ProfilForm(forms.ModelForm):
 

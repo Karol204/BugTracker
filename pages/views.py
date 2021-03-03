@@ -42,10 +42,10 @@ class HomePage(LoginRequiredMixin, View):
         priority = request.POST.get('priority')
         due_date = request.POST.get('due_date')
         description = request.POST.get('description')
-        # document = request.POST.get('doc')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
         status = request.POST.get('status')
+
         try:
             new_bug = Issue()
             new_bug.issue_name = issue_name
@@ -55,7 +55,6 @@ class HomePage(LoginRequiredMixin, View):
             new_bug.priority = priority
             new_bug.due_date = due_date
             new_bug.description = description
-            # new_bug.attachment = document
             new_bug.status = status
             new_bug.save()
             ctx = {

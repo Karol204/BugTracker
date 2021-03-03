@@ -3,47 +3,40 @@
 {% load static %}
 
 {% block content %}
-<div style="margin-top: 60px">
-
-</div>
 
         {% for project in projects %}
-            <div class="table-container">
-        <div >
-            <table class="table">
-                  <tr class="inside-content">
-                    <th>Project Name</th>
-                    <th>Deadline</th>
-                    <th>Team</th>
-                    <th>Created</th>
-                  </tr>
 
 
-                    <tr class="inside-content">
-                        <td class="title inactive"><a href="/projectDetails/{{ project.id }}">{{ project.project_name }}</a></td>
-                        <td>{{ project.deadline }}</td>
-                    <td>
-                        {% for developer in project.devs.all %}<a href="/profile/{{ developer.id}}">
+            <div>
+                <h2><a href="/projectDetails/{{ project.id }}">Project: {{ project.project_name }}</a></h2>
+            <div class="project-info">
+                <h3>{{ project.description }}</h3>
+                <h3>Created: {{ project.added_date }}</h3>
+                <h3>Deadline: {{ project.deadline }}</h3>
 
-                             {% if developer.profil_pic %}
-                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
-                            {% else %}
-                                    <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
-                            {% endif %}
-                            {{ developer }} <br>
-                            </a>
-                        {% endfor %}
-                    </td>
-                    <td>{{ project.added_date }}</td>
-                    </tr>
+            </div>
+                <h3>Team:</h3>
+            <ul>
+            {% for developer in project.devs.all %}
+            <a href="/profile/{{ developer.id}}">
+                 {% if developer.profil_pic %}
+                        <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                {% else %}
+                        <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
+                {% endif %}
+                    {{ developer }} <br>
+            </a>
+            {% endfor %}
+            </ul>
+            </div>
 
-
-            </table>
-
-        </div>
-
-    </div>
 {% endfor %}
+
+
+
+
+
+
 
     <button class="btnshowingForm"><p>Report issue</p></button>
 

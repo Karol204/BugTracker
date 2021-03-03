@@ -84,8 +84,6 @@ $(".btn-add-issue").click(function (){
 
 
 $(document).on("dblclick", ".editable", function (){
-    let value = $(this).text()
-    // let input ="<input type='text' class='input-data form-control' value='"+value+"'>"
     let select = "<select class='input-data form-control' name=\"status\" id=\"id_status\">\n" +
         "  <option value=\"New\">New</option>\n" +
         "\n" +
