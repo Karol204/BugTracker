@@ -42,9 +42,10 @@ class HomePage(LoginRequiredMixin, View):
         priority = request.POST.get('priority')
         due_date = request.POST.get('due_date')
         description = request.POST.get('description')
-        document = request.POST.get('doc')
+        # document = request.POST.get('doc')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
+        status = request.POST.get('status')
         try:
             new_bug = Issue()
             new_bug.issue_name = issue_name
@@ -54,7 +55,8 @@ class HomePage(LoginRequiredMixin, View):
             new_bug.priority = priority
             new_bug.due_date = due_date
             new_bug.description = description
-            new_bug.attachment = document
+            # new_bug.attachment = document
+            new_bug.status = status
             new_bug.save()
             ctx = {
                 'error': True,
@@ -151,37 +153,10 @@ def delete_issue(request, id):
     issue.delete()
     return redirect('/homePage')
 
-def add_issue(request):
-    form = BugReportForm(request.POST)
-    if form.is_valid():
-        issue_name = form.cleaned_data['issue_name']
-        issue_type = form.cleaned_data['issue_type']
-        project = form.cleaned_data['project']
-        priority = form.cleaned_data['priority']
-        due_date = form.cleaned_data['due_date']
-        description = form.cleaned_data['description']
-        user_id = request.user.id
-        employee_id = Employee.objects.get(account_id=user_id)
-        document = request.POST.get('doc')
-        try:
-            new_bug = Issue()
-            new_bug.issue_name = issue_name
-            new_bug.issue_type = issue_type
-            new_bug.project = Project.objects.get(id=project)
-            new_bug.reported = employee_id
-            new_bug.priority = priority
-            new_bug.due_date = due_date
-            new_bug.description = description
-            # new_bug.attachment = document
-            new_bug.save()
-            ctx = {
-                'error': True,
-                'errorMessage': 'Successfully added'
-            }
-            return JsonResponse(ctx, safe=False)
-        except:
-            ctx = {
-                'error': False,
-                'errorMessage': 'Fail'
-            }
-        return JsonResponse(ctx, safe=False)
+def update_status(request):
+    id = request.POST.get('id')
+    value = request.POST.get('value')
+    issue = Issue.objects.get(pk=id)
+    issue.status = value
+    issue.save()
+    return JsonResponse({'success': 'Status Updated'})

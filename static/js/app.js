@@ -31,7 +31,7 @@ $(".btn-add-issue").click(function (){
     let priority = document.getElementById('id_priority').value
     let due_date = document.getElementById('id_due_date').value
     let description = document.getElementById('id_description').value
-    let doc = document.getElementById('id_attachment')
+    let status = document.getElementById('id_status').value
 
     if(issue_name == "") {
         $("#result").text('Please Enter Name')
@@ -45,7 +45,10 @@ $(".btn-add-issue").click(function (){
         $("#result").text('Please Enter Date')
     }else if(description == "") {
         $("#result").text('Please Enter Description')
-    } else {
+    } else if(status == "") {
+        $("#result").text('Please Enter status')
+    }
+    else {
             $.ajax({
         url: '/homePage',
         type: 'POST',
@@ -56,11 +59,12 @@ $(".btn-add-issue").click(function (){
         priority: priority,
         due_date: due_date,
         description: description,
+        status: status,
         csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
     }
     }).done(function(response) {
         $("#result").text(response['errorMessage'])
-    }).fail(function () {
+    }).fail(function (response) {
         $("#result").text(response['errorMessage'])
     })
     }
@@ -79,3 +83,56 @@ $(".btn-add-issue").click(function (){
     })
 
 
+$(document).on("dblclick", ".editable", function (){
+    let value = $(this).text()
+    // let input ="<input type='text' class='input-data form-control' value='"+value+"'>"
+    let select = "<select class='input-data form-control' name=\"status\" id=\"id_status\">\n" +
+        "  <option value=\"New\">New</option>\n" +
+        "\n" +
+        "  <option value=\"In Progress\">In Progress</option>\n" +
+        "\n" +
+        "  <option value=\"Done\">Done</option>\n" +
+        "\n" +
+        "</select>"
+    $(this).html(select)
+    $(this).removeClass("editable")
+        })
+
+$(document).on("blur", ".input-data", function ()  {
+    let value = $(this).val()
+    let td = $(this).parent("td")
+    $(this).remove();
+    td.html(value)
+    td.addClass("editable")
+    sendToServer(td.data("id"), value)
+})
+
+$(document).on("keypress", ".input-data", function (e)  {
+    let key = e.keyCode
+    if(key == 13) {
+         let value = $(this).val()
+        let td = $(this).parent("td")
+        $(this).remove();
+        td.html(value)
+        td.addClass("editable")
+        sendToServer(td.data("id"), value)
+
+    }
+})
+
+function sendToServer(id, value) {
+    $.ajax({
+        url: '/updateStatus',
+        type: 'POST',
+        data: {
+            id: id,
+            value: value,
+            csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+        },
+    }).done(function (response){
+        console.log('success')
+    }).fail(function (response){
+        console.log('error')
+    })
+}

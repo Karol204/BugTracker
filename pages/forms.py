@@ -1,20 +1,34 @@
 from django import forms
 from .models import Project, Employee, Issue
 
-Types = (('Bug', 'Bug'), ('Data', 'Database'), ('Front', 'Front-end'))
+Types = (
+    ('Bug', 'Bug'),
+    ('Data', 'Database'),
+    ('Front', 'Front-end')
+)
 
-Priority = (('Urgent', 'Urgent'), ('ASAP', 'ASAP'), ('Normal', 'Normal'))
+Priority = (
+    ('Urgent', 'Urgent'),
+    ('ASAP', 'ASAP'),
+    ('Normal', 'Normal')
+)
+
+Status = (
+    ('New', 'New'),
+    ('In Progress', 'In Progress'),
+    ('Done', 'Done')
+)
 
 class BugReportForm(forms.Form):
 
     issue_name = forms.CharField(max_length=250)
-    issue_type = forms.CharField(max_length=5)
+    issue_type = forms.ChoiceField(choices=Types)
     project = forms.ModelChoiceField(queryset=Project.objects.all())
     priority = forms.ChoiceField(choices=Priority)
     due_date = forms.DateField()
     description = forms.CharField(max_length=250)
-    attachment = forms.FileField()
-
+    # attachment = forms.FileField()
+    status = forms.ChoiceField(choices=Status)
 
 class ProfilForm(forms.ModelForm):
 

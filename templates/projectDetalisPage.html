@@ -52,7 +52,7 @@
                         <td class="priorityType">{{ issue.priority }}</td>
                         <td>{{ issue.project }}</td>
                         <td>{{ issue.due_date }}</td>
-                        <td>{{ issue.status }}</td>
+                        <td class="editable" data-id="{{ issue.id }}" data-type="status">{{ issue.status }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -76,7 +76,7 @@
                 {% csrf_token %}
                 <div class="bug-report-form">
                     {{ form.as_p }}
-                    <button type="submit">Report</button>
+                    <input type="button" name="submit" class="btn-add-issue btn-block btn-info btn-insert-data" value="Report">
                 </div>
 
              </form>
