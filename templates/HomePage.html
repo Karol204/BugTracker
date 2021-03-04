@@ -10,9 +10,9 @@
             <div class="project-container">
                 <h2><a href="/projectDetails/{{ project.id }}">Project: {{ project.project_name }}</a></h2>
             <div class="project-info">
-                <h3>{{ project.description }}</h3>
-                <h3>Created: {{ project.added_date }}</h3>
-                <h3>Deadline: {{ project.deadline }}</h3>
+                <p class="mobile-display-none">{{ project.description }}</p>
+                <p><span>Created:</span> {{ project.added_date }}</p>
+                <p><span>Deadline:</span> {{ project.deadline }}</p>
 
             </div>
                 <h3>Team:</h3>
@@ -26,7 +26,7 @@
                             <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
                     {% endif %}
                 <div class="prof-info">
-                        <p>{{ developer.first_name }} {{ developer.last_name }}</p> <br>
+                        <h4>{{ developer.first_name }} {{ developer.last_name }}</h4> <br>
                         <p>{{ developer.email }} </p><br>
                 </div>
                 </a>
@@ -47,7 +47,7 @@
 
 
 
-    <button class="btnshowingForm"><p>Report issue</p></button>
+    <button class="btnshowingForm mobile-display-none"><p>Report issue</p></button>
 
     <div class="form inactive" id="hidden-form">
         <div id="result"></div>

@@ -2,29 +2,39 @@
 {% load static %}
 
 {% block content %}
-<div style="margin-top: 60px">
 
-{% if request.user.employee.profil_pic %}
-    <div><img src="{{ request.user.employee.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px"></div>
-{% else %}
-    <div><img src="#" alt="{{ employee.first_name }}" width="240px"></div>
-{% endif %}
+<div class="profile-container">
+        {% if employee.profil_pic %}
+            <div><img src="{{ employee.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px"></div>
+        {% else %}
+            <div><img src="/static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px"></div>
+        {% endif %}
 
-
-        <ul>
-            <li><h3>First name:</h3> {{ employee.first_name }}</li>
-            <li><h3>Last name:</h3> {{ employee.last_name }}</li>
-            <li><h3>Position:</h3> {{ employee.position }}</li>
-            <li><h3>Email:</h3> {{ employee.email }}</li>
-        </ul>
-    <div>
-        <a href="/accounts/password/change">Change password</a>
-    </div>
+        <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+        <h4>{{ employee.position }}</h4>
+        <p>{{ employee.email }}</p>
 
 </div>
 
-    <h2>Reported by {{ employee.first_name }}</h2>
-    {% for issue in reported_by_this_dev %}
-    <p>{{ issue.issue_name }}</p>
-    {% endfor %}
+    {% if request.user.id == employee.id %}
+
+    <div>
+        <a href="/accounts/password/change">Change password</a>
+    </div>
+    {% endif %}
+
+    <h2>Reported issues:</h2>
+     <div class="issues-in-profile">
+            {% for issue in reported_by_this_dev %}
+                <div class="single-issue-in-profile">
+                    <h2>{{ issue.issue_name }}</h2>
+                    <h3>Description: </h3><p>{{ issue.description }}</p>
+                    <div>
+                        <p><span>Type: </span>{{ issue.issue_type }}</p>
+                        <p><span> Status: </span>{{ issue.status }}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
 {% endblock %}

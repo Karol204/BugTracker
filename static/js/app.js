@@ -1,9 +1,9 @@
 // Funkcja odpowiadajaca za fale przy formularzu logowania i rejestracji
 const loginLabels = document.querySelectorAll('.form-control label')
-
 const priorityTypes = document.querySelectorAll('.priorityType')
-
 const formBtn = document.getElementById('hidden-form')
+const btnShowingBtn = document.querySelector('.btnshowingForm')
+const priorityCheck = document.getElementById('priority')
 
 loginLabels.forEach(label => {
     label.innerHTML = label.innerText
@@ -14,7 +14,7 @@ loginLabels.forEach(label => {
 
 // Report bug on popup
 
-const btnShowingBtn = document.querySelector('.btnshowingForm')
+
 
 btnShowingBtn.addEventListener('click', (e) => {
     formBtn.classList.toggle('inactive')
@@ -134,3 +134,13 @@ function sendToServer(id, value) {
         console.log('error')
     })
 }
+
+function priorityCheckFunc() {
+    if(priorityCheck.innerText === 'ASAP'){
+        $('.single-issue').addClass('asap')
+    } else if (priorityCheck.innerText === 'Urgent'){
+        $('.single-issue').addClass('urgent')
+    }
+}
+
+priorityCheckFunc()

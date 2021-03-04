@@ -8,6 +8,11 @@
     font-family: 'Muli', 'sans-serif';
 }
 
+a {
+    text-decoration: none;
+    color: #494b68;
+}
+
 .content {
     margin-top: 65px;
 }
@@ -228,6 +233,18 @@
     justify-content: center;
 }
 
+.mobile-display-none {
+    display: none;
+}
+
+.project-info p {
+    line-height: 25px;
+}
+
+.project-info span {
+    font-weight: bold;
+}
+
 .prof-pic {
     width: 70px;
     height: 70px;
@@ -237,13 +254,15 @@
 .prof-info-box {
     height: 100px;
     width: 100%;
-    padding: 15px;
     border: 1px solid #000;
     margin: 15px 0;
 }
 .prof-info-box a{
+    padding: 15px;
     display: flex;
+    width: 100%;
 }
+
 
 .prof-info {
     margin: auto 10px;
@@ -273,40 +292,98 @@
 .special-btn {
     display: inline-block;
     width: 100%;
-    /*height: 50px;*/
     margin: 10px auto;
 }
 
 /* Project overview styles */
 
-.table-container {
-    max-width: 1200px;
-    margin: 100px auto;
-    background-color: aliceblue;
-}
-
-
-
-.table {
+.project-info-container {
     width: 100%;
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-info-container h1 {
+    margin: 10px 0;
+}
+
+.single-issue {
+    width: 85vw;
+    margin: 10px 0;
+    border: 2px solid #246d4c;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.single-issue div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 7px 0;
+}
+
+.single-issue p {
+    margin: 7px 0;
+}
+
+.single-issue p span {
+    font-weight: bold;
+}
+
+
+
+.single-issue h3 {
+    margin-top: 7px;
+}
+
+
+/* Profile page */
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.issues-in-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-issue-in-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 15px;
     border: 1px solid #000;
-}
-
-.table tr th:not(:last-of-type) {
-    border-right: 1px solid #000;
-}
-
-.inside-content td {
-    padding: 10px 15px;
-    text-align: center;
-    vertical-align: middle;
     border-radius: 5px;
 }
 
-.title {
-    cursor: pointer;
+.single-issue-in-profile div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 7px 0;
 }
+
+.single-issue-in-profile p {
+    margin: 7px 0;
+}
+
+.single-issue-in-profile p span {
+    font-weight: bold;
+}
+
 
 /* Bug report form */
 
@@ -436,4 +513,15 @@ td img {
     object-fit: cover;
     border-radius: 50%;
     transform: translateY(26%);
+}
+
+
+
+
+.urgent {
+    background-color: rgba(200, 89, 140, 0.6);
+}
+
+.asap {
+    background-color: rgba(255, 0, 0, 0.2);
 }

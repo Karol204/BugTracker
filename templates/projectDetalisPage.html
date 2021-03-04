@@ -2,34 +2,36 @@
 {% load static %}
 
 {% block content %}
-    <div style="margin-top: 100px">
 
 
 
-            <div class="table-container">
-        <div >
+
+        <div class="project-info-container">
         <h1>{{ project.project_name }}</h1>
-        <h3>{{ project.description }}</h3>
 
-            <h4>Team:</h4>
-            <ul>{% for developer in project.devs.all %}
-            <li>
-                <a href="/profile/{{ developer.id}}">
 
-                             {% if developer.profil_pic %}
-                                    <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
-                            {% else %}
-                                    <img class="prof-pic def" src="/static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
-                            {% endif %}
-                            {{ developer }} <br>
-                            </a>
+        <h2>Reported Issue:</h2>
+            <div class="issues">
+            {% for issue in issues %}
+                <div class="single-issue">
+                    <h2>{{ issue.issue_name }}</h2>
+                    <div>
+                        <p><span>Type: </span>{{ issue.issue_type }}</p>
+                        <p><span> Status: </span>{{ issue.status }}</p>
+                    </div>
+                    <p><span>Owner: </span><a href="/profile/{{ issue.reported.id }}">{{ issue.reported.first_name }} {{ issue.reported.last_name }}</a></p>
+                    <h3>Description: </h3><p>{{ issue.description }}</p>
 
-            </li>{% endfor %}
-            </ul>
+                    <p><span>Status: </span>{{ issue.status }}</p>
+                    <h3 id="priority">{{ issue.priority }}</h3>
 
-        <h3>Reported Issue</h3>
+                </div>
 
-        <div class="table-container">
+            {% endfor %}
+        </div>
+
+
+         <div class="table-container mobile-display-none">
             <table class="table">
                   <tr class="inside-content">
                     <th>Title</th>
@@ -61,7 +63,12 @@
 
     </div>
 
-<button class="btnshowingForm"><p>Report issue</p></button>
+
+
+
+
+
+<button class="btnshowingForm mobile-display-none"><p>Report issue</p></button>
 
     <div class="form inactive" id="hidden-form">
         <div class="form-group">
@@ -85,7 +92,6 @@
 
         </div>
 
-    </div>
 
 
 
@@ -93,8 +99,4 @@
 
 
 
-
-
-
-    </div>
 {% endblock %}

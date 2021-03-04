@@ -32,7 +32,7 @@ class HomePage(LoginRequiredMixin, View):
             }
             return render(request, 'HomePage.html', ctx)
         else:
-            return redirect('/profil')
+            return redirect(f'/profil/{request.user.id}')
 
     def post(self, request):
 
@@ -96,33 +96,18 @@ class NewBugView(LoginRequiredMixin, View):
 
 
 
-class ProfileView(LoginRequiredMixin, View):
-
-    def get(self, request, id):
-        user_id = request.user.id
-        employee = Employee.objects.filter(account_id=user_id)
-
-        if employee:
-            person = Employee.objects.get(account_id=user_id)
-            ctx = {
-                'employee': person,
-            }
-            return render(request, 'profilPage.html', ctx)
-        else:
-            return redirect('/profil')
-
 
 class ProfilFormView(LoginRequiredMixin, View):
 
 
-    def get(self, request):
+    def get(self, request, id):
         user_id = request.user.id
-        employee = Employee.objects.filter(account_id=user_id)
-        if employee:
-            person = Employee.objects.get(account_id=user_id)
-            form = ProfilForm(isinstance(person))
-        else:
-            form = ProfilForm()
+        # employee = Employee.objects.filter(account_id=user_id)
+        # if employee:
+        #     person = Employee.objects.get(account_id=user_id)
+        #     form = ProfilForm(isinstance(person))
+        # else:
+        form = ProfilForm()
         ctx = {
             'form': form,
         }
@@ -135,16 +120,25 @@ class ProfilFormView(LoginRequiredMixin, View):
             form.save()
         return redirect('/homePage')
 
-class DeveloperProfileView(LoginRequiredMixin, View):
+
+class ProfileView(LoginRequiredMixin, View):
 
     def get(self, request, id):
-        person = Employee.objects.get(pk=id)
-        reported_by_this_dev = Issue.objects.filter(reported_id=id)
-        ctx = {
-            'employee': person,
-            'reported_by_this_dev': reported_by_this_dev
-        }
-        return render(request, 'profilPage.html', ctx)
+        logged_user_id = request.user.id
+        employee = Employee.objects.filter(pk=id)
+
+        if len(employee) == 1:
+            reported_by_this_dev = Issue.objects.filter(reported_id=id)
+            person = Employee.objects.get(pk=id)
+            projects = Project.objects.filter(devs=id)
+            ctx = {
+                    'employee': person,
+                    'reported_by_this_dev': reported_by_this_dev
+                }
+            return render(request, 'profilPage.html', ctx)
+        else:
+            return redirect(f'/profil/{logged_user_id}')
+
 
 
 def delete_issue(request, id):
