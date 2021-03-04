@@ -102,22 +102,31 @@ class ProfilFormView(LoginRequiredMixin, View):
 
     def get(self, request, id):
         user_id = request.user.id
-        # employee = Employee.objects.filter(account_id=user_id)
-        # if employee:
-        #     person = Employee.objects.get(account_id=user_id)
-        #     form = ProfilForm(isinstance(person))
-        # else:
-        form = ProfilForm()
-        ctx = {
-            'form': form,
-        }
-        return render(request, 'profilFormPage.html', ctx)
+        employee = Employee.objects.filter(account_id=user_id)
+        if employee:
+            person = Employee.objects.get(account_id=user_id)
+            ctx = {
+                'employee': person
+            }
+            return render(request, 'profilPage.html', ctx)
+        else:
+            form = ProfilForm()
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'profilFormPage.html', ctx)
 
 
-    def post(self, request):
+    def post(self, request, id):
         form = ProfilForm(request.POST, request.FILES,)
-        if form.is_valid():
-            form.save()
+        new_employee = Employee()
+        new_employee.account = request.user
+        new_employee.first_name = form.cleaned_data['first_name']
+        new_employee.last_name = form.cleaned_data['last_name']
+        new_employee.position = form.cleaned_data['position']
+        new_employee.email = request.user.email
+        # new_employee.attachment = form.cleaned_data['attachment']
+        new_employee.save()
         return redirect('/homePage')
 
 

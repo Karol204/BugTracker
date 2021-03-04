@@ -1,16 +1,34 @@
 {% extends '_base.html' %}
 {% load static %}
-
+{% load field_attrs %}
 {% block content %}
-<div style="margin-top: 60px">
-<h1>Prosze uzupelnij swoj profil</h1>
- <form method="post" style="margin-top: 60px">
+<div class="whole-profile-form">
+
+ <form method="post" class="profile-form">
+     <h1>Fill your profile</h1>
         {% csrf_token %}
 
-            <div>
-                {{ form.as_p }}
+            <div class="profile-form-container">
+                <label>First name</label>
+                {{ form.first_name|attr:"placeholder:" }}
+
             </div>
-            <button type="submit">Report</button>
+
+            <div class="profile-form-container">
+                <label>Last name</label>
+                {{ form.last_name|attr:"placeholder:" }}
+
+            </div>
+            <div class="profile-form-container">
+                <label>Position</label>
+                {{ form.position|attr:"placeholder:" }}
+
+            </div>
+            <div class="profile-form-container">
+                <label>Profil picture</label>
+                {{ form.profil_pic }}
+            </div>
+            <button type="submit">Edit profile</button>
     </form>
     </div>
 {% endblock %}
