@@ -221,6 +221,61 @@
     font-size: 20px;
 }
 
+.project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.prof-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.prof-info-box {
+    height: 100px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #000;
+    margin: 15px 0;
+}
+.prof-info-box a{
+    display: flex;
+}
+
+.prof-info {
+    margin: auto 10px;
+}
+
+.issues-link {
+    cursor: pointer;
+    width: 80%;
+    margin: 15px 0;
+    display: inline-block;
+    padding: 10px;
+    background: lightblue;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 10px;
+}
+.issues-link:focus {
+    outline: 0;
+}
+
+.issues-link:active {
+   transform: scale(0.98);
+}
+
+.special-btn {
+    display: inline-block;
+    width: 100%;
+    /*height: 50px;*/
+    margin: 10px auto;
+}
 
 /* Project overview styles */
 
@@ -229,6 +284,8 @@
     margin: 100px auto;
     background-color: aliceblue;
 }
+
+
 
 .table {
     width: 100%;

@@ -40,7 +40,7 @@
                     <th>Status</th>
                   </tr>
                 {% for issue in issues %}
-                    <tr class="inside-content">
+                    <tr class="inside-content" id="issues">
                         <td class="title inactive">{{ issue.issue_name }}</td>
                         <td>
                             {% if issue.reported.profil_pic %}

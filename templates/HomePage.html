@@ -7,7 +7,7 @@
         {% for project in projects %}
 
 
-            <div>
+            <div class="project-container">
                 <h2><a href="/projectDetails/{{ project.id }}">Project: {{ project.project_name }}</a></h2>
             <div class="project-info">
                 <h3>{{ project.description }}</h3>
@@ -18,16 +18,25 @@
                 <h3>Team:</h3>
             <ul>
             {% for developer in project.devs.all %}
-            <a href="/profile/{{ developer.id}}">
-                 {% if developer.profil_pic %}
-                        <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
-                {% else %}
-                        <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
-                {% endif %}
-                    {{ developer }} <br>
-            </a>
+                <div class="prof-info-box">
+                <a href="/profile/{{ developer.id}}">
+                     {% if developer.profil_pic %}
+                            <img class="prof-pic" src="{{ developer.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
+                    {% else %}
+                            <img class="prof-pic def" src="static/images/profileImg/default.jpg" alt="{{ developer.first_name }}" width="240px">
+                    {% endif %}
+                <div class="prof-info">
+                        <p>{{ developer.first_name }} {{ developer.last_name }}</p> <br>
+                        <p>{{ developer.email }} </p><br>
+                </div>
+                </a>
+            </div>
+
             {% endfor %}
             </ul>
+
+            <button class="issues-link"><a class="special-btn" href="/projectDetails/{{ project.id }}#issues">See project issues</a></button>
+
             </div>
 
 {% endfor %}
