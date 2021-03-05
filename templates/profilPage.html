@@ -23,8 +23,9 @@
     </div>
     {% endif %}
 
-    <h2>Reported issues:</h2>
+
      <div class="issues-in-profile">
+     <h2>Reported issues:</h2>
             {% for issue in reported_by_this_dev %}
                 <div class="single-issue-in-profile">
                     <h2>{{ issue.issue_name }}</h2>

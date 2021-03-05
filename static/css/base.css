@@ -24,7 +24,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*height: 100vh;*/
+    height: 100vh;
     overflow: hidden;
     margin: 0;
 }
@@ -34,7 +34,7 @@ a {
     display: flex;
     height: 100vh;
     width: 450px;
-    align-content: center;
+    align-content: space-between;
     justify-content: center;
     flex-direction: column;
     background-color: rgba(0,0,0,0.4);
@@ -42,14 +42,16 @@ a {
     border-radius: 20px;
 }
 
-.firstContainer h1, .firstContainer h2 {
+.firstContainer div h1{
+    display: inline-block;
     width: 100%;
     line-height: 50px;
-    margin: 25px auto 15px auto;
+    margin: 25px auto 35px auto;
     text-align: center;
 }
-.firstContainer h2 {
-    margin-bottom: 45px;
+
+.firstContainer div h2 {
+    margin: 25px;
 }
 
 .firstContainer div {
@@ -67,7 +69,6 @@ a {
     background-color: lightblue;
     border-radius: 10px;
     border: 0;
-    margin: 0 10px;
 }
 .firstContainer div button a {
     display: inline-block;
@@ -91,6 +92,7 @@ a {
     background-color: rgba(0,0,0,0.4);
     height: 100vh;
     width: 100vw;
+
 }
 
 .container h1 {
@@ -104,7 +106,8 @@ a {
 }
 
 .loginForm {
-    margin: 10px 30px;
+    margin: 10px 40px;
+    margin: 10px 40px;
 }
 
 
@@ -271,6 +274,7 @@ a {
 .issues-link {
     cursor: pointer;
     width: 80%;
+    max-width: 270px;
     margin: 15px 0;
     display: inline-block;
     padding: 10px;
@@ -587,6 +591,59 @@ td img {
     object-fit: cover;
     border-radius: 50%;
     transform: translateY(26%);
+}
+
+@media (min-width: 450px) {
+    .content {
+        max-width: 1000px;
+        margin: 70px auto;
+    }
+    .firstContainer {
+        height: 70vh;
+        margin: auto 10vw;
+    }
+
+    .container {
+        height: 70vh;
+        width: 450px;
+        margin: auto 10vw;
+        border-radius: 15px;
+
+    }
+    .issues-in-profile {
+        max-width: 450px;
+        margin: 10px auto;
+    }
+
+    .single-issue {
+        max-width: 450px;
+    }
+
+}
+
+@media (min-width: 600px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .prof-info-box {
+        width: 270px;
+        margin: 10px 20px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .issues {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .single-issue {
+        margin: 10px 15px;
+    }
+    .nav-container ul {
+        width: 1000px;
+        margin: 0 auto;
+    }
 }
 
 .urgent {

@@ -16,7 +16,7 @@
 
             </div>
                 <h3>Team:</h3>
-            <ul>
+            <div class="grid-container">
             {% for developer in project.devs.all %}
                 <div class="prof-info-box">
                 <a href="/profile/{{ developer.id}}">
@@ -33,7 +33,7 @@
             </div>
 
             {% endfor %}
-            </ul>
+            </div>
 
             <button class="issues-link"><a class="special-btn" href="/projectDetails/{{ project.id }}#issues">See project issues</a></button>
 

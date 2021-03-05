@@ -22,11 +22,12 @@
 {% else %}
 
     <div class="firstContainer">
+    <div>
         <h1>Welcome in </br> Wtorek.com</h1>
-        <h2>Log in or create an account</h2>
-        <div>
-        <button class="login-btn"><a href="{% url 'account_login' %}">Log in</a> </button>
-        <button class="login-btn"><a href="{% url 'account_signup' %}">Sign Up</a> </button>
+
+            <button class="login-btn"><a href="{% url 'account_login' %}">Log in</a> </button>
+            <h2>or</h2>
+            <button class="login-btn"><a href="{% url 'account_signup' %}">Sign Up</a> </button>
         </div>
     </div>
 
