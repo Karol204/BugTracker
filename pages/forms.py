@@ -26,6 +26,7 @@ class BugReportForm(forms.Form):
     project = forms.ModelChoiceField(queryset=Project.objects.all())
     priority = forms.ChoiceField(choices=Priority)
     due_date = forms.DateField()
+    project = forms.ModelChoiceField(queryset=Project.objects.all())
     description = forms.CharField(max_length=250)
     attachment = forms.FileField()
 

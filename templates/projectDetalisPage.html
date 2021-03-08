@@ -9,15 +9,14 @@
         <div class="project-info-container">
         <h1>{{ project.project_name }}</h1>
 
-
         <h2>Reported Issue:</h2>
             <div class="issues">
             {% for issue in issues %}
                 <div class="single-issue">
                     <h2>{{ issue.issue_name }}</h2>
-                    <div>
+                    <div >
                         <p><span>Type: </span>{{ issue.issue_type }}</p>
-                        <p><span> Status: </span>{{ issue.status }}</p>
+                        <p class="status"><span> Status: </span>{{ issue.status }}</p>
                     </div>
                     <p><span>Owner: </span><a href="/profile/{{ issue.reported.id }}">{{ issue.reported.first_name }} {{ issue.reported.last_name }}</a></p>
                     <h3>Description: </h3><p>{{ issue.description }}</p>
@@ -29,74 +28,6 @@
 
             {% endfor %}
         </div>
-
-
-         <div class="table-container mobile-display-none">
-            <table class="table">
-                  <tr class="inside-content">
-                    <th>Title</th>
-                    <th>Owner</th>
-                    <th>Priority</th>
-                    <th>Project</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                  </tr>
-                {% for issue in issues %}
-                    <tr class="inside-content" id="issues">
-                        <td class="title inactive">{{ issue.issue_name }}</td>
-                        <td>
-                            {% if issue.reported.profil_pic %}
-                                    <img class="prof-pic" src="{{ issue.reported.profil_pic.url }}" alt="{{ employee.first_name }}" width="240px">
-                            {% else %}
-                                    <img class="prof-pic def" src="/static/images/profileImg/default.jpg" alt="{{ employee.first_name }}" width="240px">
-                            {% endif %}
-                            {{ issue.reported }}</td>
-                        <td class="priorityType">{{ issue.priority }}</td>
-                        <td>{{ issue.project }}</td>
-                        <td>{{ issue.due_date }}</td>
-                        <td class="editable" data-id="{{ issue.id }}" data-type="status">{{ issue.status }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-
-
-
-    </div>
-
-
-
-
-
-
-<button class="btnshowingForm mobile-display-none"><p>+</p></button>
-
-    <div class="form inactive" id="hidden-form">
-        <div class="form-group">
-              <div class="alert alert-success" id="ins_success" style="display:none">
-
-              </div>
-               <div class="alert alert-danger" id="ins_error" style="display:none">
-
-              </div>
-          </div>
-            <form method="post" class="bug-form">
-                {% csrf_token %}
-                <div class="bug-report-form">
-                    {{ form.as_p }}
-                    <input type="button" name="submit" class="btn-add-issue btn-block btn-info btn-insert-data" value="Report">
-                </div>
-
-             </form>
-
-        </div>
-
-        </div>
-
-
-
-
-
-
 
 
 {% endblock %}

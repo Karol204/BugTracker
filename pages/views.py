@@ -43,7 +43,7 @@ class HomePage(LoginRequiredMixin, View):
         description = request.POST.get('description')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
-        status = request.POST.get('status')
+
 
         try:
             new_bug = Issue()
@@ -54,16 +54,16 @@ class HomePage(LoginRequiredMixin, View):
             new_bug.priority = priority
             new_bug.due_date = due_date
             new_bug.description = description
-            new_bug.status = status
+            new_bug.status = 'New'
             new_bug.save()
             ctx = {
-                'error': True,
+                'error': False,
                 'errorMessage': 'Successfully added'
             }
             return JsonResponse(ctx, safe=False)
         except:
             ctx = {
-                'error': False,
+                'error': True,
                 'errorMessage': 'Fail'
             }
             return JsonResponse(ctx, safe=False)
@@ -92,7 +92,6 @@ class NewBugView(LoginRequiredMixin, View):
             'form': form,
         }
         return render(request, 'bugReportFormPage.html', ctx)
-
 
 
 

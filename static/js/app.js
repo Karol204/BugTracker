@@ -27,43 +27,36 @@ $(".btdn-add-issue").click(function (){
 
     let issue_name = document.getElementById('id_issue_name').value
     let issue_type = document.getElementById('id_issue_type').value
-    let project = document.getElementById('id_project').value
+    // let project = document.getElementById('id_project').value
     let priority = document.getElementById('id_priority').value
     let due_date = document.getElementById('id_due_date').value
     let description = document.getElementById('id_description').value
-    let status = document.getElementById('id_status').value
+
 
     if(issue_name == "") {
         $("#result").text('Please Enter Name')
     } else if(issue_type == "") {
         $("#result").text('Please Select Type')
-    }else if(project == "") {
-        $("#result").text('Please Select Project')
     }else if(priority == "") {
         $("#result").text('Please Select Priority')
     }else if(due_date == "") {
         $("#result").text('Please Enter Date')
     }else if(description == "") {
         $("#result").text('Please Enter Description')
-    } else if(status == "") {
-        $("#result").text('Please Enter status')
-    }
-    else {
+    } else {
             $.ajax({
         url: '/homePage',
         type: 'POST',
         data: {
         issue_name: issue_name,
         issue_type: issue_type,
-        project: project,
         priority: priority,
         due_date: due_date,
         description: description,
         status: status,
-        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
-    }
-    }).done(function(response) {
-        $("#result").text(response['errorMessage'])
+        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    }).ajaxSuccess(function() {
+        $("#result").text('Successfully added')
     }).fail(function (response) {
         $("#result").text(response['errorMessage'])
     })
@@ -90,7 +83,7 @@ function screenWidthCheck () {
     })
 
 
-$(document).on("dblclick", ".editable", function (){
+$(document).on("click", ".editable", function (){
     let select = "<select class='input-data form-control' name=\"status\" id=\"id_status\">\n" +
         "  <option value=\"New\">New</option>\n" +
         "\n" +
