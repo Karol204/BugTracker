@@ -22,7 +22,7 @@ btnShowingBtn.addEventListener('click', (e) => {
 })
 
 
-$(".btn-add-issue").click(function (){
+$(".btdn-add-issue").click(function (){
 
 
     let issue_name = document.getElementById('id_issue_name').value
@@ -68,9 +68,16 @@ $(".btn-add-issue").click(function (){
         $("#result").text(response['errorMessage'])
     })
     }
-
-
 })
+
+
+
+function screenWidthCheck () {
+    if (innerWidth >= 600) {
+        $('.btnshowingForm').removeClass('mobile-display-none')
+    }
+}
+
 
 // Priority box color
 
@@ -135,12 +142,80 @@ function sendToServer(id, value) {
     })
 }
 
-function priorityCheckFunc() {
-    if(priorityCheck.innerText === 'ASAP'){
-        $('.single-issue').addClass('asap')
-    } else if (priorityCheck.innerText === 'Urgent'){
-        $('.single-issue').addClass('urgent')
-    }
-}
+// function priorityCheckFunc() {
+//     if(priorityCheck.innerText === 'ASAP'){
+//         $('.single-issue').addClass('asap')
+//     } else if (priorityCheck.innerText === 'Urgent'){
+//         $('.single-issue').addClass('urgent')
+//     }
+// }
 
-priorityCheckFunc()
+
+
+
+window.addEventListener('resize', screenWidthCheck())
+
+
+
+// priorityCheckFunc()
+screenWidthCheck()
+
+
+
+let form1 = $('#form1')
+let form2 = $('#form2')
+let form3 = $('#form3')
+
+
+let next1 = $('#next1')
+let next2 = $('#next2')
+
+let back1 = $('#back1')
+let back2 = $('#back2')
+
+let progress = $('#progress')
+
+next1.on('click', function () {
+
+    let issue_name = document.getElementById('id_issue_name').value
+    let issue_type = document.getElementById('id_issue_type').value
+    let description = document.getElementById('id_description').value
+
+    if (issue_name == "") {
+        $("#result").text('Please Enter Name')
+    } else if (issue_type == "") {
+        $("#result").text('Please Select Type')
+    } else if (description == "") {
+        $("#result").text('Please Enter Description')
+    } else {
+
+        form1.css('left', -450)
+        form2.css('left', 40)
+        progress.css('width', 240)
+    }
+})
+
+back1.on('click', function (){
+
+        form1.css('left', 40)
+        form2.css('left', 450)
+        progress.css('width', 120)
+})
+
+next2.on('click', function (){
+     let due_date = document.getElementById('id_due_date').value
+
+    if(due_date == "") {
+         $("#result").text('Please Enter Date')
+    } else {
+        form2.css('left', -450)
+        form3.css('left', 40)
+        progress.css('width', 360)
+    }
+})
+
+back2.on('click', function (){
+    form2.css('left', 40)
+    form3.css('left', 450)
+    progress.css('width', 240)
+})

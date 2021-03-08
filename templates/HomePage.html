@@ -1,7 +1,7 @@
 
 {% extends '_base.html' %}
 {% load static %}
-
+{% load field_attrs %}
 {% block content %}
 
         {% for project in projects %}
@@ -47,19 +47,66 @@
 
 
 
-    <button class="btnshowingForm mobile-display-none"><p>Report issue</p></button>
+    <button class="btnshowingForm mobile-display-none"><p>+</p></button>
 
-    <div class="form inactive" id="hidden-form">
-        <div id="result"></div>
+    <div class="wrapper inactive" id="hidden-form">
+
+    <div class="form">
+        <div class="step-row">
+            <div id="progress"></div>
+            <div class="step-col"><small>Step 1</small></div>
+            <div class="step-col"><small>Step 2</small></div>
+            <div class="step-col"><small>Step 3</small></div>
+        </div>
+    <div id="result"></div>
             <form method="post" class="bug-form">
                 {% csrf_token %}
-                <div class="bug-report-form">
-                    {{ form.as_p }}
-                    <input type="button" name="submit" class="btn-add-issue btn-block btn-info btn-insert-data" value="Report">
+                <div class="formset" id="form1">
+                    <h3>Enter name and description</h3>
+                    {{ form.issue_name|attr:"placeholder: Name" }}
+                    {{ form.description|attr:"placeholder: Description" }}
+                    {{ form.issue_type|attr:"placeholder: Description" }}
+
+
+
+                        <div class="btn-box">
+                            <div class="form-btn" id="next1">Next</div>
+                        </div>
                 </div>
+
+
+                <div class="formset" id="form2">
+                <h3>Priority and Due date</h3>
+                {{ form.due_date|attr:"placeholder: Due date" }}
+                {{ form.priority|attr:"placeholder: Priority" }}
+
+
+
+
+                <div class="btn-box">
+                    <div class="form-btn" id="back1">Back</div>
+                    <div class="form-btn" id="next2">Next</div>
+                </div>
+                </div>
+
+                <div class="formset" id="form3">
+                <h3>Optional attachment</h3>
+                <input type="text" placeholder="attachment">
+
+
+                <div class="btn-box">
+                    <div class="form-btn" id="back2">Back</div>
+                    <button class="form-btn btdn-add-issue" type="submit">Submit</button>
+                </div>
+                </div>
+
+
+
 
              </form>
 
+
+    </div>
         </div>
 
 {% endblock %}

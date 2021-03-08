@@ -38,7 +38,6 @@ class HomePage(LoginRequiredMixin, View):
 
         issue_name = request.POST.get('issue_name')
         issue_type = request.POST.get('issue_type')
-        project = request.POST.get('project')
         priority = request.POST.get('priority')
         due_date = request.POST.get('due_date')
         description = request.POST.get('description')
@@ -50,7 +49,7 @@ class HomePage(LoginRequiredMixin, View):
             new_bug = Issue()
             new_bug.issue_name = issue_name
             new_bug.issue_type = issue_type
-            new_bug.project = Project.objects.get(id=project)
+            new_bug.project = Project.objects.get(id=5)
             new_bug.reported = employee_id
             new_bug.priority = priority
             new_bug.due_date = due_date
