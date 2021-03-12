@@ -7,7 +7,7 @@
  <form method="post" class="profile-form">
      <h1>Fill your profile</h1>
         {% csrf_token %}
-
+     <div id="result"></div>
             <div class="profile-form-container">
                 <label>First name</label>
                 {{ form.first_name|attr:"placeholder:" }}
@@ -21,14 +21,14 @@
             </div>
             <div class="profile-form-container">
                 <label>Position</label>
-                {{ form.position|attr:"placeholder:" }}
+                {{ form.position|attr:"enctype: multipart/form-data" }}
 
             </div>
             <div class="profile-form-container">
                 <label>Profil picture</label>
                 {{ form.profil_pic }}
             </div>
-            <button type="submit">Edit profile</button>
+            <button id="formBtn" type="button" onclick="sendProfile()" data-id="{{ user_id }}">Edit profile</button>
     </form>
     </div>
 {% endblock %}

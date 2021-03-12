@@ -14,12 +14,14 @@ loginLabels.forEach(label => {
 
 // Report bug on popup
 
+//
+//
+// btnShowingBtn.addEventListener('click', (e) => {
+// formBtn.classList.toggle('inactive')
+// btnShowingBtn.classList.toggle('active')
+// })
+//
 
-
-btnShowingBtn.addEventListener('click', (e) => {
-    formBtn.classList.toggle('inactive')
-    btnShowingBtn.classList.toggle('active')
-})
 
 
 $(".btdn-add-issue").click(function (){

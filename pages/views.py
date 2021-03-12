@@ -112,22 +112,38 @@ class ProfilFormView(LoginRequiredMixin, View):
         else:
             form = ProfilForm()
             ctx = {
+                'user_id':user_id,
                 'form': form,
             }
             return render(request, 'profilFormPage.html', ctx)
 
 
     def post(self, request, id):
-        form = ProfilForm(request.POST, request.FILES,)
-        new_employee = Employee()
-        new_employee.account = request.user
-        new_employee.first_name = form.cleaned_data['first_name']
-        new_employee.last_name = form.cleaned_data['last_name']
-        new_employee.position = form.cleaned_data['position']
-        new_employee.email = request.user.email
-        # new_employee.attachment = form.cleaned_data['attachment']
-        new_employee.save()
-        return redirect('/homePage')
+        # form = ProfilForm(request.POST, request.FILES)
+
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        position = request.POST.get('position')
+        profil_pic = request.FILES.get('profilPic')
+
+        try:
+
+            new_employee = Employee()
+            new_employee.account = request.user
+            new_employee.first_name = first_name
+            new_employee.last_name = last_name
+            new_employee.position = position
+            new_employee.email = request.user.email
+            new_employee.profil_pic = profil_pic
+            new_employee.save()
+            return redirect('/homePage')
+        except:
+            ctx = {
+                'error': True,
+                'errorMessage': 'Fail'
+            }
+            return JsonResponse(ctx, safe=False)
+
 
 
 class ProfileView(LoginRequiredMixin, View):
