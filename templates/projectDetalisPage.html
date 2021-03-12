@@ -24,6 +24,10 @@
                     <p><span>Status: </span>{{ issue.status }}</p>
                     <h3 id="priority">{{ issue.priority }}</h3>
 
+
+                {% if issue.attachment %}
+                   <h3><a href="{{ issue.attachment.url }}">Attachment</a></h3>
+                {% endif %}
                 </div>
 
             {% endfor %}

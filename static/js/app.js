@@ -27,11 +27,11 @@ $(".btdn-add-issue").click(function (){
 
     let issue_name = document.getElementById('id_issue_name').value
     let issue_type = document.getElementById('id_issue_type').value
-    // let project = document.getElementById('id_project').value
+    let project = document.getElementById('id_project').value
     let priority = document.getElementById('id_priority').value
     let due_date = document.getElementById('id_due_date').value
     let description = document.getElementById('id_description').value
-
+    let att = document.getElementById('id_attachment').value
 
     if(issue_name == "") {
         $("#result").text('Please Enter Name')
@@ -53,9 +53,10 @@ $(".btdn-add-issue").click(function (){
         priority: priority,
         due_date: due_date,
         description: description,
-        status: status,
+        project:project,
+        att:att,
         csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value}
-    }).ajaxSuccess(function() {
+    }).done(function() {
         $("#result").text('Successfully added')
     }).fail(function (response) {
         $("#result").text(response['errorMessage'])

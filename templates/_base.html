@@ -20,7 +20,7 @@
         <li><a href="/homePage" style="color: #dd3233; font-weight: bold">Home</a></li>
         <li><a href="/profile/{{ user.id }}">Profile</a></li>
         {% if user.is_superuser %}
-        <li><a href="/admin">Admin Page</a></li>
+            <li><a href="/admin">Admin Page</a></li>
         {% endif %}
         <li><a href="{% url 'account_logout' %}">Log out</a></li>
 

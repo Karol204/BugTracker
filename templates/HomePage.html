@@ -77,7 +77,7 @@
 
                 <div class="formset" id="form2">
                 <h3>Priority and Due date</h3>
-                    {{ form.project }}
+                {{ form.project }}
                 {{ form.due_date|attr:"placeholder: Due date" }}
                 {{ form.priority|attr:"placeholder: Priority" }}
 
@@ -92,7 +92,7 @@
 
                 <div class="formset" id="form3">
                 <h3>Optional attachment</h3>
-                <input type="text" placeholder="attachment">
+                    {{ form.attachment|attr:"enctype: multipart/form-data" }}
 
 
                 <div class="btn-box">

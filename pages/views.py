@@ -41,6 +41,7 @@ class HomePage(LoginRequiredMixin, View):
         priority = request.POST.get('priority')
         due_date = request.POST.get('due_date')
         description = request.POST.get('description')
+        att = request.FILES.get('att')
         user_id = request.user.id
         employee_id = Employee.objects.get(account_id=user_id)
 
@@ -55,6 +56,7 @@ class HomePage(LoginRequiredMixin, View):
             new_bug.due_date = due_date
             new_bug.description = description
             new_bug.status = 'New'
+            new_bug.attachment = att
             new_bug.save()
             ctx = {
                 'error': False,
