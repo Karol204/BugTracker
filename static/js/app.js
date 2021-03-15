@@ -14,13 +14,13 @@ loginLabels.forEach(label => {
 
 // Report bug on popup
 
-//
-//
-// btnShowingBtn.addEventListener('click', (e) => {
-// formBtn.classList.toggle('inactive')
-// btnShowingBtn.classList.toggle('active')
-// })
-//
+
+if(btnShowingBtn !== null){
+    btnShowingBtn.addEventListener('click', (e) => {
+    formBtn.classList.toggle('inactive')
+    btnShowingBtn.classList.toggle('active')
+})
+}
 
 
 
@@ -215,3 +215,38 @@ back2.on('click', function (){
     form3.css('left', 450)
     progress.css('width', 240)
 })
+
+
+function sendProfile() {
+    let userId = document.getElementById('formBtn').dataset.id
+    let firstName = document.getElementById('id_first_name').value
+    let lastName = document.getElementById('id_last_name').value
+    let position = document.getElementById('id_position').value
+
+    let profilePic = document.getElementById('id_profil_pic').value
+
+
+    if (firstName == "") {
+        $("#result").text('Please Enter First Name')
+    } else if (lastName == "") {
+        $("#result").text('Please Enter Last Name')
+    } else if (position == "") {
+        $("#result").text('Please Select Position')
+    } else {
+        $.ajax({
+            url: `/profil/${userId}`,
+            type: 'POST',
+            data: {
+                firstName: firstName,
+                lastName: lastName,
+                position: position,
+                profilePic: profilePic,
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
+            }
+        }).done(function() {
+            window.location.replace("http://127.0.0.1:8000/homePage");
+    }).fail(function (response) {
+        $("#result").text(response['errorMessage'])
+    })
+    }
+}
