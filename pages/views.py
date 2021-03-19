@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -62,13 +63,13 @@ class HomePage(LoginRequiredMixin, View):
                 'error': False,
                 'errorMessage': 'Successfully added'
             }
-            return JsonResponse(ctx, safe=False)
+            return JsonResponse(ctx)
         except:
             ctx = {
                 'error': True,
-                'errorMessage': 'Fail'
+                'errorMessage': 'Nie udalo sie'
             }
-            return JsonResponse(ctx, safe=False)
+            return JsonResponse(ctx)
 
 
 class ProjectDetalisView(LoginRequiredMixin, View):

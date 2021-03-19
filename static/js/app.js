@@ -217,7 +217,7 @@ back2.on('click', function (){
 })
 
 
-function sendProfile() {
+function sendProfile(e) {
     let userId = document.getElementById('formBtn').dataset.id
     let firstName = document.getElementById('id_first_name').value
     let lastName = document.getElementById('id_last_name').value
@@ -236,17 +236,21 @@ function sendProfile() {
         $.ajax({
             url: `/profil/${userId}`,
             type: 'POST',
+            dataType: "json",
             data: {
                 firstName: firstName,
                 lastName: lastName,
                 position: position,
                 profilePic: profilePic,
                 csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
-            }
-        }).done(function() {
-            window.location.replace("http://127.0.0.1:8000/homePage");
-    }).fail(function (response) {
-        $("#result").text(response['errorMessage'])
+            },
+            success : function(e) {
+            alert('dgsjigidn')},
+            fail :function (response) {
+                $("#result").text(response['errorMessage'])
+        }
     })
-    }
+        return false;
 }
+
+    console.log('static')

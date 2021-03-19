@@ -28,7 +28,7 @@ class BugReportForm(forms.Form):
     due_date = forms.DateField()
     project = forms.ModelChoiceField(queryset=Project.objects.all())
     description = forms.CharField(max_length=250)
-    attachment = forms.FileField()
+    attachment = forms.FileField(required=False)
 
 class ProfilForm(forms.ModelForm):
 
