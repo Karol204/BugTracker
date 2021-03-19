@@ -67,7 +67,7 @@ class HomePage(LoginRequiredMixin, View):
         except:
             ctx = {
                 'error': True,
-                'errorMessage': 'Nie udalo sie'
+                'errorMessage': 'Something went wrong'
             }
             return JsonResponse(ctx)
 
