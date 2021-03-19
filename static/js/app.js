@@ -61,7 +61,7 @@ $(".btdn-add-issue").click(function (e){
     }).done(function() {
         $("#result").text('Successfully added')
     }).fail(function (response) {
-        $("#result").text(response['errorMessage'])
+        $("#result").text('Something went wrong')
     })
     }
 })
