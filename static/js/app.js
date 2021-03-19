@@ -244,13 +244,12 @@ function sendProfile(e) {
                 profilePic: profilePic,
                 csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
             },
-            success : function(e) {
-            alert('dgsjigidn')},
-            fail :function (response) {
+            success: function (e) {
+                alert('dgsjigidn')
+            },
+            fail: function (response) {
                 $("#result").text(response['errorMessage'])
-        }
-    })
-        return false;
+            }
+        })
+    }
 }
-
-    console.log('static')
