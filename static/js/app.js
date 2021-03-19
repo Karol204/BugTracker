@@ -24,8 +24,8 @@ if(btnShowingBtn !== null){
 
 
 
-$(".btdn-add-issue").click(function (){
-
+$(".btdn-add-issue").click(function (e){
+    e.preventDefault()
 
     let issue_name = document.getElementById('id_issue_name').value
     let issue_type = document.getElementById('id_issue_type').value
@@ -138,25 +138,11 @@ function sendToServer(id, value) {
     })
 }
 
-// function priorityCheckFunc() {
-//     if(priorityCheck.innerText === 'ASAP'){
-//         $('.single-issue').addClass('asap')
-//     } else if (priorityCheck.innerText === 'Urgent'){
-//         $('.single-issue').addClass('urgent')
-//     }
-// }
-
-
-
 
 window.addEventListener('resize', screenWidthCheck())
 
-
-
 // priorityCheckFunc()
 screenWidthCheck()
-
-
 
 let form1 = $('#form1')
 let form2 = $('#form2')
@@ -218,6 +204,8 @@ back2.on('click', function (){
 
 
 function sendProfile(e) {
+    e.preventDefault()
+
     let userId = document.getElementById('formBtn').dataset.id
     let firstName = document.getElementById('id_first_name').value
     let lastName = document.getElementById('id_last_name').value
@@ -243,13 +231,11 @@ function sendProfile(e) {
                 position: position,
                 profilePic: profilePic,
                 csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
-            },
-            success: function (e) {
-                alert('dgsjigidn')
-            },
-            fail: function (response) {
-                $("#result").text(response['errorMessage'])
             }
+        }).done(function() {
+                $("#result").text(response['errorMessage'])
+            }).fail(function (response) {
+                $("#result").text(response['errorMessage'])
         })
     }
 }
