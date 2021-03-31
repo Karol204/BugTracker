@@ -1,0 +1,822 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Muli', 'sans-serif';
+}
+
+a {
+    text-decoration: none;
+    color: #494b68;
+}
+
+.content {
+    margin-top: 65px;
+}
+.loginPage {
+    background-color: steelblue;
+    color: #fff;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+/* Style landingPage */
+
+.firstContainer {
+    display: flex;
+    height: 100vh;
+    width: 450px;
+    align-content: space-between;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.4);
+    padding: 16px 25px;
+    border-radius: 20px;
+}
+
+.firstContainer div h1{
+    display: inline-block;
+    width: 100%;
+    line-height: 50px;
+    margin: 25px auto 35px auto;
+    text-align: center;
+}
+
+.firstContainer div h2 {
+    margin: 25px;
+}
+
+.firstContainer div {
+    display: flex;
+    height: 130px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.login-btn {
+    width: 150px;
+    height: 50px;
+    background-color: lightblue;
+    border-radius: 10px;
+    border: 0;
+}
+.firstContainer div button a {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #444;
+}
+
+.firstContainer div button:focus {
+    outline: 0;
+}
+
+
+
+/* Style dotyczace strony logowania */
+
+.container {
+    background-color: rgba(0,0,0,0.4);
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.container h1 {
+    text-align: center;
+    margin: 45px 0;
+}
+
+.pas-res-txt {
+    text-align: center;
+    margin: 45px 0;
+}
+
+.loginForm {
+    margin: 10px 40px;
+    margin: 10px 40px;
+}
+
+
+.btn {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    background: lightblue;
+    font-family: inherit;
+    font-size: 20px;
+    border: 0;
+    border-radius: 10px;
+}
+.btn:focus {
+    outline: 0;
+}
+
+.btn:active {
+   transform: scale(0.98);
+}
+
+.registerLink a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: lightblue;
+}
+
+.form-control {
+    position: relative;
+    margin: 20px 0 40px;
+    width: 100%;
+}
+
+
+#id_password,
+#id_password1,
+#id_password2,
+#id_login,
+#id_email,
+#id_oldpassword{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+
+#id_password:focus,
+#id_password:valid,
+#id_password1:focus,
+#id_password1:valid,
+#id_password2:focus,
+#id_password2:valid,
+#id_login:focus,
+#id_login:valid,
+#id_email:focus,
+#id_email:valid,
+#id_oldpassword:focus,
+#id_oldpassword:valid {
+    outline: 0;
+    border-bottom: 2px solid lightblue;
+}
+
+.form-control label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+    color: lightblue;
+    transform: translateY(-30px);
+}
+
+
+
+/* Navigation */
+
+.nav-container{
+    background-color: #494b68;
+    position: fixed;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-container ul {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.nav-container ul li {
+    list-style: none;
+    margin: auto 15px;
+}
+
+.nav-container ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-display-none {
+    display: none;
+}
+
+.project-info p {
+    line-height: 25px;
+}
+
+.project-info span {
+    font-weight: bold;
+}
+
+.prof-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.prof-info-box {
+    height: 100px;
+    width: 100%;
+    border: 1px solid #000;
+    margin: 15px 0;
+}
+.prof-info-box a{
+    padding: 15px;
+    display: flex;
+    width: 100%;
+}
+
+
+.prof-info {
+    margin: auto 10px;
+}
+
+.issues-link {
+    cursor: pointer;
+    width: 80%;
+    max-width: 270px;
+    margin: 15px 0;
+    display: inline-block;
+    padding: 10px;
+    background: lightblue;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 10px;
+}
+.issues-link:focus {
+    outline: 0;
+}
+
+.issues-link:active {
+   transform: scale(0.98);
+}
+
+.special-btn {
+    display: inline-block;
+    width: 100%;
+    margin: 10px auto;
+}
+
+/* Project overview styles */
+
+.project-info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-info-container h1 {
+    margin: 10px 0;
+}
+
+.single-issue {
+    width: 85vw;
+    margin: 10px 0;
+    border: 2px solid #246d4c;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.single-issue div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 7px 0;
+}
+
+.single-issue p {
+    margin: 7px 0;
+}
+
+.single-issue p span {
+    font-weight: bold;
+}
+
+
+
+.single-issue h3 {
+    margin-top: 7px;
+}
+
+
+/* Profile page */
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.issues-in-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-issue-in-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.single-issue-in-profile div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 7px 0;
+}
+
+.single-issue-in-profile p {
+    margin: 7px 0;
+}
+
+.single-issue-in-profile p span {
+    font-weight: bold;
+}
+
+/* Profile form */
+
+.whole-profile-form {
+    margin-top: -65px;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(73,75,104, 0.8);
+    color: #fff;
+
+}
+
+.profile-form {
+    width: 100vw;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+}
+
+.profile-form-container label {
+    margin: 10px 0;
+}
+
+.profile-form-container input,
+.profile-form-container select{
+    height: 30px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+.profile-form-container select option {
+    background-color: rgba(73,75,104, 0.8);
+}
+
+.profile-form-container input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.profile-form-container input[type="file"]::before {
+    content: 'Select your profile img';
+    display: inline-block;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.profile-form button {
+    color: #494b68 !important;
+    text-transform: uppercase;
+    margin-top: 45px;
+    background: #ffffff;
+    padding: 20px;
+    border: 4px solid #494b68 !important;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+
+.profile-form button:hover {
+color: #494949 !important;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
+}
+
+/* Bug report form */
+
+
+@media (min-width: 450px) {
+    .content {
+        max-width: 1000px;
+        margin: 70px auto;
+    }
+    .firstContainer {
+        height: 70vh;
+        margin: auto 10vw;
+    }
+
+    .container {
+        height: 70vh;
+        width: 450px;
+        margin: auto 10vw;
+        border-radius: 15px;
+
+    }
+    .issues-in-profile {
+        max-width: 450px;
+        margin: 10px auto;
+    }
+
+    .single-issue {
+        max-width: 450px;
+    }
+
+}
+
+
+.wrapper.inactive {
+    display: none;
+}
+
+.btnshowingForm {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 100px;
+    right: 100px;
+    border-radius: 5px;
+    border: 2px solid #494b68;
+    background-color: #246d4c;
+    color: #fff;
+    transition: 1s ease;
+    z-index: 1000;
+}
+
+.btnshowingForm p {
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    margin: auto 5px;
+    line-height: 100%;
+    cursor: pointer;
+
+}
+
+.btnshowingForm:hover {
+    color: black;
+    background-color: #fff;
+    border-color: #246d4c;
+}
+
+.wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(80,80,80,0.4);
+    top: 60px;
+    left: 0;
+    overflow: hidden;
+}
+
+.form {
+    width: 360px;
+    height: 400px;
+    margin: 8% auto;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.formset {
+    width: 280px;
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.bug-form input {
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border: 0;
+    border-bottom: 1px solid #999;
+    background-color: transparent;
+}
+
+::placeholder {
+    color: #777;
+}
+
+.btn-box {
+    display: flex;
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.form-btn {
+    width: 110px;
+    height: 40px;
+    margin: 0 auto;
+    padding: 8px 0;
+    position: relative;
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    border-radius: 30px;
+    border: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+#result {
+    height: 50px;
+    width: 60%;
+    margin: 5px auto;
+    line-height: 50px;
+    font-size: 15px;
+}
+
+.form p {
+    width: 40%;
+    height: 35px;
+}
+
+#form2,
+#form3 {
+    left: 450px;
+}
+
+.step-row {
+    width: 360px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -1px 5px -1px #000;
+    position: relative;
+}
+
+.step-col {
+    width: 120px;
+    text-align: center;
+    position: relative;
+    color: #333;
+    position: relative;
+}
+
+#progress {
+    position: absolute;
+    height: 100%;
+    width: 120px;
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    transition: 0.5s;
+
+}
+
+#progress::after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #ffad06;
+}
+
+
+
+
+
+
+@media (min-width: 600px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .prof-info-box {
+        width: 270px;
+        margin: 10px 20px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .issues {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .single-issue {
+        margin: 10px 15px;
+    }
+    .nav-container ul {
+        width: 1000px;
+        margin: 0 auto;
+    }
+}
+
+.urgent {
+    background-color: orange;
+}
+
+.asap {
+    background-color: rgba(190, 172, 103, 0.8);
+}
+
+
+
+
+
+
+/*.bug-report-form {*/
+/*    display: flex;*/
+/*    margin-top: 100px;*/
+/*    width: 350px;*/
+/*    height: 500px;*/
+/*    background-color: lightblue;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: space-around;*/
+/*    z-index: -2;*/
+/*    padding: 50px 40px 25px;*/
+/*}*/
+
+/*.bug-report-form p {*/
+/*    position: relative;*/
+/*    width: 250px;*/
+/*    height: 150px;*/
+/*    margin: 15px auto;*/
+/*}*/
+
+/*.bug-report-form p label {*/
+/*    position: absolute;*/
+/*    top: -25px;*/
+/*    left: 5px;*/
+/*    font-size: 18px;*/
+/*}*/
+
+/*.bug-report-form p input,*/
+/*.bug-report-form p select {*/
+/*    background-color: transparent;*/
+/*    border: 3px solid #fff;*/
+/*    width: 250px;*/
+/*    height: 50px;*/
+/*    font-size: 1.3rem;*/
+/*}*/
+
+/*.bug-report-form button {*/
+/*    width: 120px;*/
+/*    height: 40px;*/
+/*    border: 3px solid #fff;*/
+/*    border-radius: 3px;*/
+/*    background-color: transparent;*/
+/*    font-size: 1.2rem;*/
+
+/*}*/
+
+/*.bug-report-form button:hover {*/
+/*    background-color: #fff;*/
+/*    color: #494b68;*/
+/*}*/
+
+/*.bug-report-form button:focus {*/
+/*    outline: 0;*/
+/*}*/
+
+/*.bug-report-form button:active {*/
+/*    transform: scale(0.98);*/
+/*}*/
+
+
+
+/*.form {*/
+/*    position: fixed;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+
+
+
+/*.btnshowingForm {*/
+/*    position: fixed;*/
+/*    bottom: 50px;*/
+/*    right: 50px;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    border: 3px #000 solid;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    background-color: lightblue;*/
+/*    transition: .3s ease-in;*/
+/*}*/
+
+/*.btnshowingForm:hover,*/
+/*.btnshowingForm:active,*/
+/*.btnshowingForm:focus*/
+/*{*/
+/*    width: 150px;*/
+/*    height: 70px;*/
+/*}*/
+
+/*.btnshowingForm:hover p {*/
+/*    color: black;*/
+/*    opacity: 1;*/
+/*}*/
+
+/*.btnshowingForm:active {*/
+/*    transform: scale(0.98);*/
+/*}*/
+
+/*.btnshowingForm.active {*/
+/*        background-color: darkseagreen;*/
+/*}*/
+
+/*.btnshowingForm p {*/
+/*    color: black;*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.1s .18s ease;*/
+/*}*/
+
+
+
+/*td img {*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    object-fit: cover;*/
+/*    border-radius: 50%;*/
+/*    transform: translateY(26%);*/
+/*}*/
